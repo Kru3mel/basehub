@@ -1,10 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lslwNn/bf3MvNfRA58qEuUqYLNcw1eS679VAfXdSbHNw4rO8sgdT7mhl+EQPchbk1ZXNX7fX/tg8c3GGOXpYaw==",
+  "dgSpecHash": "HiYzKTxciozuxHnnwJoLoULNjJndZs+DbA1aXTu37Jg1/As10SG5KoeIhhxUHDSUzzbbD+e0GmSQeuz3Jp5jFg==",
   "success": true,
-  "projectFilePath": "C:\\GitHub\\basehub\\basehub\\WindowsFormsApp1\\WindowsFormsApp1.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\Malte\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.13\\microsoft.netcore.app.host.win-x64.3.1.13.nupkg.sha512"
-  ],
+  "projectFilePath": "C:\\GitHub\\basehub\\basehub\\WindowsFormsApp1\\basehub.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }
