@@ -28,8 +28,8 @@ namespace basehub
             string size = "640x640";
             string scale = "1";
             string zoom = "14";
-            string apiKey = "AIzaSyAqM1CnlEfs669Rig4zOzec48UusxS_hhI";
-            string mapType = "roadmap";
+            string apiKey = "AIzaSyC4BIZBnmh0nkMR2u7wtrk0eQtwublOG9c";
+            string mapType = "hybrid";
 
             UriBuilder uriBuilder = new UriBuilder();
             uriBuilder.Scheme = "http";
@@ -37,7 +37,7 @@ namespace basehub
             uriBuilder.Path = "/maps/api/staticmap";
             uriBuilder.Query = $"center={location}&size={size}&scale={scale}&zoom={zoom}&maptype={mapType}&key={apiKey}";
 
-            var image = Image.FromStream(HttpGetBytes(uriBuilder.Uri));
+            var image = Image.FromStream(HttpGetStream(uriBuilder.Uri));
             pictureBox_Map.Image = image;
         }
 
@@ -50,10 +50,9 @@ namespace basehub
             return data;
         }*/     
 
-        private Stream HttpGetBytes(Uri uri)
+        private Stream HttpGetStream(Uri uri)
         {
-            byte[] byte_data = httpClient.GetByteArrayAsync(uri).Result;
-            Stream data = new MemoryStream(byte_data);
+            Stream data = httpClient.GetStreamAsync(uri).Result;
             return data;
         }     
 
