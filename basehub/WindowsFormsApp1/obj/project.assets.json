@@ -8,30 +8,27 @@
     "net5.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\malte\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Malte\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\malte\\Documents\\GitHub\\basehub\\basehub\\WindowsFormsApp1\\basehub.csproj",
+      "projectUniqueName": "C:\\GitHub\\basehub\\basehub\\WindowsFormsApp1\\basehub.csproj",
       "projectName": "basehub",
-      "projectPath": "C:\\Users\\malte\\Documents\\GitHub\\basehub\\basehub\\WindowsFormsApp1\\basehub.csproj",
-      "packagesPath": "C:\\Users\\malte\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\malte\\Documents\\GitHub\\basehub\\basehub\\WindowsFormsApp1\\obj\\",
+      "projectPath": "C:\\GitHub\\basehub\\basehub\\WindowsFormsApp1\\basehub.csproj",
+      "packagesPath": "C:\\Users\\Malte\\.nuget\\packages\\",
+      "outputPath": "C:\\GitHub\\basehub\\basehub\\WindowsFormsApp1\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\malte\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Malte\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0-windows7.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {}
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net5.0-windows7.0": {
@@ -66,7 +63,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -54,10 +54,9 @@ namespace basehub
         {
             Stream data = httpClient.GetStreamAsync(uri).Result;
             return data;
-        }     
+        }
 
         #endregion
-
     }
 }
 
