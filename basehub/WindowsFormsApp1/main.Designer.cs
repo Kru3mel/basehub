@@ -67,9 +67,9 @@ namespace basehub
             // Button_Search
             // 
             this.Button_Search.Enabled = false;
-            this.Button_Search.Location = new System.Drawing.Point(514, 37);
+            this.Button_Search.Location = new System.Drawing.Point(514, 36);
             this.Button_Search.Name = "Button_Search";
-            this.Button_Search.Size = new System.Drawing.Size(81, 31);
+            this.Button_Search.Size = new System.Drawing.Size(81, 33);
             this.Button_Search.TabIndex = 1;
             this.Button_Search.Text = "Search Map";
             this.Button_Search.UseVisualStyleBackColor = true;
@@ -77,12 +77,12 @@ namespace basehub
             // 
             // textBox_location
             // 
-            this.textBox_location.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox_location.Font = new System.Drawing.Font("Segoe UI", 13.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.textBox_location.Location = new System.Drawing.Point(6, 37);
-            this.textBox_location.Multiline = true;
             this.textBox_location.Name = "textBox_location";
             this.textBox_location.Size = new System.Drawing.Size(375, 31);
             this.textBox_location.TabIndex = 2;
+            this.textBox_location.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_location_KeyPress);
             // 
             // groupBox_MapData
             // 
@@ -142,7 +142,7 @@ namespace basehub
             // comboBox_mapType
             // 
             this.comboBox_mapType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_mapType.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.comboBox_mapType.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.comboBox_mapType.FormattingEnabled = true;
             this.comboBox_mapType.ItemHeight = 23;
             this.comboBox_mapType.Items.AddRange(new object[] {
@@ -171,14 +171,15 @@ namespace basehub
             // 
             // numericUpDown_mapSize
             // 
-            this.numericUpDown_mapSize.Location = new System.Drawing.Point(25, 506);
+            this.numericUpDown_mapSize.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.numericUpDown_mapSize.Location = new System.Drawing.Point(25, 498);
             this.numericUpDown_mapSize.Maximum = new decimal(new int[] {
             20,
             0,
             0,
             0});
             this.numericUpDown_mapSize.Name = "numericUpDown_mapSize";
-            this.numericUpDown_mapSize.Size = new System.Drawing.Size(45, 23);
+            this.numericUpDown_mapSize.Size = new System.Drawing.Size(45, 31);
             this.numericUpDown_mapSize.TabIndex = 2;
             this.numericUpDown_mapSize.Value = new decimal(new int[] {
             15,
@@ -196,7 +197,7 @@ namespace basehub
             this.trackBar_mapZoom.Name = "trackBar_mapZoom";
             this.trackBar_mapZoom.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.trackBar_mapZoom.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.trackBar_mapZoom.Size = new System.Drawing.Size(45, 478);
+            this.trackBar_mapZoom.Size = new System.Drawing.Size(45, 470);
             this.trackBar_mapZoom.TabIndex = 1;
             this.trackBar_mapZoom.Value = 15;
             this.trackBar_mapZoom.ValueChanged += new System.EventHandler(this.trackBar_MapZoom_ValueChanged);
@@ -229,7 +230,7 @@ namespace basehub
             // 
             // comboBox_SelectDorne
             // 
-            this.comboBox_SelectDorne.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.comboBox_SelectDorne.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.comboBox_SelectDorne.FormattingEnabled = true;
             this.comboBox_SelectDorne.Location = new System.Drawing.Point(6, 22);
             this.comboBox_SelectDorne.Name = "comboBox_SelectDorne";

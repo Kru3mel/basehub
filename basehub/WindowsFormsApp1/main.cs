@@ -17,7 +17,7 @@ namespace basehub
     public partial class main : Form
     {
         HttpClient httpClient = new HttpClient();
-
+        BaseHubMap map = new BaseHubMap();
 
         public main()
         {            
@@ -26,34 +26,43 @@ namespace basehub
 
         private void Button_Search_Click(object sender, EventArgs e)
         {
-            string location = textBox_location.Text;
-            string size;
-            string scale = GetMapSize(pictureBox_map.Width, pictureBox_map.Height, 1, out size).ToString();
-            string zoom = trackBar_mapZoom.Value.ToString();
-            string apiKey = "AIzaSyC4BIZBnmh0nkMR2u7wtrk0eQtwublOG9c";
-            string mapType = "hybrid";
+            //Set the required values for the API Requests
+            map.mapLocation = textBox_location.Text;
+            map.mapWidth = pictureBox_map.Width;
+            map.mapHeight = pictureBox_map.Height;
 
+            map.mapZoom = trackBar_mapZoom.Value;
+
+            string size;
+            map.mapScale = GetMapSize(pictureBox_map.Width, pictureBox_map.Height, 1, out size);
+            map.mapType = comboBox_mapType.Text;
+
+            string apiKey = "AIzaSyC4BIZBnmh0nkMR2u7wtrk0eQtwublOG9c";
+
+            //Build Google Maps Static API Request
             UriBuilder imageUri = new UriBuilder();
             imageUri.Scheme = "http";
             imageUri.Host = "maps.googleapis.com";
             imageUri.Path = "/maps/api/staticmap";
-            imageUri.Query = $"center={location}&size={size}&scale={scale}&zoom={zoom}&maptype={mapType}&key={apiKey}";
+            imageUri.Query = $"center={map.mapLocation}&size={size}&scale={map.mapScale}&zoom={map.mapZoom}&maptype={map.mapType}&key={apiKey}";
 
+            //Build Google Maps Geocoding API Request
             UriBuilder locationUri = new UriBuilder();
             locationUri.Scheme = "https";
             locationUri.Host = "maps.googleapis.com";
             locationUri.Path = "/maps/api/geocode/json";
-            locationUri.Query = $"address={location}&key={apiKey}";
+            locationUri.Query = $"address={map.mapLocation}&key={apiKey}";
 
-            /*
+            //Download the desired map from google maps and display it in picture box
             var image = Image.FromStream(HttpGetStream(imageUri.Uri));
-            pictureBox_map.Image = image;*/
+            pictureBox_map.Image = image;
 
+            //Get the corresponding coordinates from the center of the map using the same query
             if (HttpGetString(locationUri.Uri,out string data))
             {
                 JObject locationData = JObject.Parse(data);
-                string latitude = (string)locationData["results"][0]["geometry"]["location"]["lat"];
-                string longitude = (string)locationData["results"][0]["geometry"]["location"]["lng"];
+                map.coordsLat = (float)locationData["results"][0]["geometry"]["location"]["lat"];
+                map.coordLng = (float)locationData["results"][0]["geometry"]["location"]["lng"];
             };
             
         }
@@ -111,9 +120,16 @@ namespace basehub
             return scale;
         }
 
+
         #endregion
 
-        
+        private void textBox_location_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar == (char)Keys.Enter && Button_Search.Enabled == true)
+            {
+                Button_Search_Click(sender, e);
+            }
+        }
     }
 }
 
