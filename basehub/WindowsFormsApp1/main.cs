@@ -25,9 +25,9 @@ namespace basehub
         private void Button_Search_Click(object sender, EventArgs e)
         {
             string location = TextBox_Location.Text;
-            string size = "640x640";
-            string scale = "1";
-            string zoom = "14";
+            //string size = "640x640";
+            string scale = GetMapSize(pictureBox_Map.Width, pictureBox_Map.Height, 1, out string size).ToString();
+            string zoom = trackBar_MapZoom.Value.ToString();
             string apiKey = "AIzaSyC4BIZBnmh0nkMR2u7wtrk0eQtwublOG9c";
             string mapType = "hybrid";
 
@@ -56,7 +56,30 @@ namespace basehub
             return data;
         }
 
+        private int GetMapSize(int width, int height, int scale, out string size)
+        {
+            if (width>640 || height > 640)
+            {
+                scale = GetMapSize(width / 2, height / 2, scale + 1, out size);
+            }
+            else
+            {                
+                size = $"{width}x{height}";                
+            }
+            return scale;
+        }
+
         #endregion
+
+        private void trackBar_MapZoom_ValueChanged(object sender, EventArgs e)
+        {
+            numericUpDown_MapSize.Value = trackBar_MapZoom.Value;
+        }
+
+        private void numericUpDown_MapSize_ValueChanged(object sender, EventArgs e)
+        {
+            trackBar_MapZoom.Value = (int)numericUpDown_MapSize.Value;
+        }
     }
 }
 
