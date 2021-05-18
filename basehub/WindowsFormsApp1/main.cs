@@ -78,7 +78,7 @@ namespace basehub
         }
         private void comboBox_MapType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Button_Search.Enabled = true;
+            button_search.Enabled = true;
         }
 
         #region methods
@@ -125,10 +125,33 @@ namespace basehub
 
         private void textBox_location_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if(e.KeyChar == (char)Keys.Enter && Button_Search.Enabled == true)
+            if(e.KeyChar == (char)Keys.Enter && button_search.Enabled == true)
             {
                 Button_Search_Click(sender, e);
             }
+        }
+
+        private void button_save_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.RestoreDirectory = true;
+            saveFileDialog.AddExtension = true;
+
+            saveFileDialog.Filter = "Images|*.png";
+            saveFileDialog.FileName = map.mapLocation;
+            saveFileDialog.DefaultExt = "png";
+            saveFileDialog.Title = "Save Map";
+
+            saveFileDialog.FileName = map.mapLocation;
+
+            if(saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string path = saveFileDialog.FileName;
+                FileStream stream = File.Create(path);
+                pictureBox_map.Image.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                stream.Close();
+            }
+
         }
     }
 }

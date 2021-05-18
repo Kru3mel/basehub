@@ -30,7 +30,7 @@ namespace basehub
         private void InitializeComponent()
         {
             this.pictureBox_map = new System.Windows.Forms.PictureBox();
-            this.Button_Search = new System.Windows.Forms.Button();
+            this.button_search = new System.Windows.Forms.Button();
             this.textBox_location = new System.Windows.Forms.TextBox();
             this.groupBox_MapData = new System.Windows.Forms.GroupBox();
             this.button_load = new System.Windows.Forms.Button();
@@ -43,7 +43,7 @@ namespace basehub
             this.trackBar_mapZoom = new System.Windows.Forms.TrackBar();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox_Telemetry = new System.Windows.Forms.GroupBox();
-            this.comboBox_SelectDorne = new System.Windows.Forms.ComboBox();
+            this.comboBox_selectDorne = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_map)).BeginInit();
@@ -64,16 +64,16 @@ namespace basehub
             this.pictureBox_map.TabIndex = 0;
             this.pictureBox_map.TabStop = false;
             // 
-            // Button_Search
+            // button_search
             // 
-            this.Button_Search.Enabled = false;
-            this.Button_Search.Location = new System.Drawing.Point(514, 36);
-            this.Button_Search.Name = "Button_Search";
-            this.Button_Search.Size = new System.Drawing.Size(81, 33);
-            this.Button_Search.TabIndex = 1;
-            this.Button_Search.Text = "Search Map";
-            this.Button_Search.UseVisualStyleBackColor = true;
-            this.Button_Search.Click += new System.EventHandler(this.Button_Search_Click);
+            this.button_search.Enabled = false;
+            this.button_search.Location = new System.Drawing.Point(514, 36);
+            this.button_search.Name = "button_search";
+            this.button_search.Size = new System.Drawing.Size(81, 33);
+            this.button_search.TabIndex = 1;
+            this.button_search.Text = "Search Map";
+            this.button_search.UseVisualStyleBackColor = true;
+            this.button_search.Click += new System.EventHandler(this.Button_Search_Click);
             // 
             // textBox_location
             // 
@@ -91,7 +91,7 @@ namespace basehub
             this.groupBox_MapData.Controls.Add(this.label2);
             this.groupBox_MapData.Controls.Add(this.label1);
             this.groupBox_MapData.Controls.Add(this.comboBox_mapType);
-            this.groupBox_MapData.Controls.Add(this.Button_Search);
+            this.groupBox_MapData.Controls.Add(this.button_search);
             this.groupBox_MapData.Controls.Add(this.textBox_location);
             this.groupBox_MapData.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.groupBox_MapData.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -120,6 +120,7 @@ namespace basehub
             this.button_save.TabIndex = 5;
             this.button_save.Text = "Save";
             this.button_save.UseVisualStyleBackColor = true;
+            this.button_save.Click += new System.EventHandler(this.button_save_Click);
             // 
             // label2
             // 
@@ -218,7 +219,7 @@ namespace basehub
             // 
             // groupBox_Telemetry
             // 
-            this.groupBox_Telemetry.Controls.Add(this.comboBox_SelectDorne);
+            this.groupBox_Telemetry.Controls.Add(this.comboBox_selectDorne);
             this.groupBox_Telemetry.Controls.Add(this.dataGridView1);
             this.groupBox_Telemetry.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.groupBox_Telemetry.Location = new System.Drawing.Point(1258, 12);
@@ -228,14 +229,14 @@ namespace basehub
             this.groupBox_Telemetry.TabStop = false;
             this.groupBox_Telemetry.Text = "UAS Telemetry";
             // 
-            // comboBox_SelectDorne
+            // comboBox_selectDorne
             // 
-            this.comboBox_SelectDorne.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.comboBox_SelectDorne.FormattingEnabled = true;
-            this.comboBox_SelectDorne.Location = new System.Drawing.Point(6, 22);
-            this.comboBox_SelectDorne.Name = "comboBox_SelectDorne";
-            this.comboBox_SelectDorne.Size = new System.Drawing.Size(198, 31);
-            this.comboBox_SelectDorne.TabIndex = 1;
+            this.comboBox_selectDorne.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.comboBox_selectDorne.FormattingEnabled = true;
+            this.comboBox_selectDorne.Location = new System.Drawing.Point(6, 22);
+            this.comboBox_selectDorne.Name = "comboBox_selectDorne";
+            this.comboBox_selectDorne.Size = new System.Drawing.Size(198, 31);
+            this.comboBox_selectDorne.TabIndex = 1;
             // 
             // dataGridView1
             // 
@@ -288,7 +289,7 @@ namespace basehub
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox_map;
-        private System.Windows.Forms.Button Button_Search;
+        private System.Windows.Forms.Button button_search;
         private System.Windows.Forms.TextBox textBox_location;
         private System.Windows.Forms.Button Button_Save;
         private System.Windows.Forms.GroupBox groupBox_MapData;
@@ -304,7 +305,7 @@ namespace basehub
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button_load;
-        private System.Windows.Forms.ComboBox comboBox_SelectDorne;
+        private System.Windows.Forms.ComboBox comboBox_selectDorne;
         private System.Windows.Forms.Button button_save;
     }
 }
