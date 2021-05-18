@@ -111,6 +111,7 @@ namespace basehub
             this.button_load.TabIndex = 6;
             this.button_load.Text = "Load";
             this.button_load.UseVisualStyleBackColor = true;
+            this.button_load.Click += new System.EventHandler(this.button_load_Click);
             // 
             // button_save
             // 

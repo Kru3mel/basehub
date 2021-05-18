@@ -153,6 +153,25 @@ namespace basehub
             }
 
         }
+
+        private void button_load_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.RestoreDirectory = true;
+            openFileDialog.AddExtension = true;
+            openFileDialog.Multiselect = false;
+
+            openFileDialog.Filter = "Images|*.png";
+            openFileDialog.DefaultExt = "png";
+            openFileDialog.Title = "Open Map";
+
+            if(openFileDialog.ShowDialog() == DialogResult.OK)
+            {                
+                FileStream fileStream = File.OpenRead(openFileDialog.FileName);
+                Image image = Image.FromStream(fileStream);
+                pictureBox_map.Image = image;
+            }
+        }
     }
 }
 
