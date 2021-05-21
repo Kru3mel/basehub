@@ -133,6 +133,7 @@ namespace basehub
 
         private void button_save_Click(object sender, EventArgs e)
         {
+            //Open and configure a Save File Dialog to get the file path
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.RestoreDirectory = true;
             saveFileDialog.AddExtension = true;
@@ -156,6 +157,7 @@ namespace basehub
 
         private void button_load_Click(object sender, EventArgs e)
         {
+            //Open and configure a Load File Dialog to get the file from a path
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.RestoreDirectory = true;
             openFileDialog.AddExtension = true;
