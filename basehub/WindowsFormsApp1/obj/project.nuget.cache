@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "oUVGguRPVrfSsKIoTrl92noTWi9aNHI/+J1lDBzN2uSP8wgZ7yd0SenWVkKeBTc27/ROquytiAbkJa3RvGApQw==",
+  "dgSpecHash": "vuBDTuJQJxFwFAdQZZavDjPR87vlOphwizTyavtk0vBzlV7YEglzZ+ukR9dCX3/xBTXKNckwyL17kextyBNxgA==",
   "success": true,
-  "projectFilePath": "C:\\GitHub\\basehub\\basehub\\WindowsFormsApp1\\basehub.csproj",
+  "projectFilePath": "C:\\Users\\malte\\Documents\\GitHub\\basehub\\basehub\\WindowsFormsApp1\\basehub.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Malte\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+    "C:\\Users\\malte\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
   ],
   "logs": []
 }

@@ -13,32 +13,34 @@ namespace basehub
 
         }
 
-        public string mapName { get; set; }
+        public string Name { get; set; }
 
-        public string mapLocation { get; set; }
+        public string Path { get; set; }
 
-        public string mapType { get; set; }
+        public string Query { get; set; }
 
-        public int mapWidth { get;  set; }
+        public string Type { get; set; }
 
-        public int mapHeight { get; set; }
+        public int Width { get;  set; }
+
+        public int Height { get; set; }
+
+        public int Zoom { get; set; }
+
+        public int Scale { get; set; }
 
         public float coordsLat { get; set; }
 
         public float coordLng { get; set; }
 
-        public int mapZoom { get; set; }
-
-        public int mapScale { get; set; }
-
         public float scaleX { get; set; }
 
         public float scaleY { get; set; }
 
-        public void calcScales()
+        public void calcScale()
         {
-            scaleX = 360 / ((mapWidth/mapScale) * (float)Math.Pow(2, mapZoom));
-            scaleY = 180 / ((mapHeight / mapScale) * (float)Math.Pow(2, mapZoom));
+            scaleX = 360 / ((Width/Scale) * (float)Math.Pow(2, Zoom));
+            scaleY = 180 / ((Height/Scale) * (float)Math.Pow(2, Zoom));
         }
     }
 }
