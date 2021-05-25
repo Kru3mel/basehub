@@ -58,18 +58,20 @@ namespace basehub
             // 
             // pictureBox_map
             // 
-            this.pictureBox_map.Location = new System.Drawing.Point(6, 15);
+            this.pictureBox_map.Location = new System.Drawing.Point(11, 32);
+            this.pictureBox_map.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.pictureBox_map.Name = "pictureBox_map";
-            this.pictureBox_map.Size = new System.Drawing.Size(1128, 909);
+            this.pictureBox_map.Size = new System.Drawing.Size(2095, 1939);
             this.pictureBox_map.TabIndex = 0;
             this.pictureBox_map.TabStop = false;
             // 
             // button_search
             // 
             this.button_search.Enabled = false;
-            this.button_search.Location = new System.Drawing.Point(514, 36);
+            this.button_search.Location = new System.Drawing.Point(955, 77);
+            this.button_search.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.button_search.Name = "button_search";
-            this.button_search.Size = new System.Drawing.Size(81, 33);
+            this.button_search.Size = new System.Drawing.Size(150, 70);
             this.button_search.TabIndex = 1;
             this.button_search.Text = "Search Map";
             this.button_search.UseVisualStyleBackColor = true;
@@ -78,9 +80,10 @@ namespace basehub
             // textBox_location
             // 
             this.textBox_location.Font = new System.Drawing.Font("Segoe UI", 13.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox_location.Location = new System.Drawing.Point(6, 37);
+            this.textBox_location.Location = new System.Drawing.Point(11, 79);
+            this.textBox_location.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.textBox_location.Name = "textBox_location";
-            this.textBox_location.Size = new System.Drawing.Size(375, 31);
+            this.textBox_location.Size = new System.Drawing.Size(693, 55);
             this.textBox_location.TabIndex = 2;
             this.textBox_location.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_location_KeyPress);
             // 
@@ -96,18 +99,21 @@ namespace basehub
             this.groupBox_MapData.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.groupBox_MapData.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.groupBox_MapData.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.groupBox_MapData.Location = new System.Drawing.Point(12, 948);
+            this.groupBox_MapData.Location = new System.Drawing.Point(22, 2022);
+            this.groupBox_MapData.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.groupBox_MapData.Name = "groupBox_MapData";
-            this.groupBox_MapData.Size = new System.Drawing.Size(1140, 81);
+            this.groupBox_MapData.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.groupBox_MapData.Size = new System.Drawing.Size(2117, 173);
             this.groupBox_MapData.TabIndex = 4;
             this.groupBox_MapData.TabStop = false;
             this.groupBox_MapData.Text = "Map Data Controls";
             // 
             // button_load
             // 
-            this.button_load.Location = new System.Drawing.Point(863, 37);
+            this.button_load.Location = new System.Drawing.Point(1603, 79);
+            this.button_load.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.button_load.Name = "button_load";
-            this.button_load.Size = new System.Drawing.Size(81, 31);
+            this.button_load.Size = new System.Drawing.Size(150, 66);
             this.button_load.TabIndex = 6;
             this.button_load.Text = "Load";
             this.button_load.UseVisualStyleBackColor = true;
@@ -115,9 +121,10 @@ namespace basehub
             // 
             // button_save
             // 
-            this.button_save.Location = new System.Drawing.Point(776, 37);
+            this.button_save.Location = new System.Drawing.Point(1441, 79);
+            this.button_save.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.button_save.Name = "button_save";
-            this.button_save.Size = new System.Drawing.Size(81, 31);
+            this.button_save.Size = new System.Drawing.Size(150, 66);
             this.button_save.TabIndex = 5;
             this.button_save.Text = "Save";
             this.button_save.UseVisualStyleBackColor = true;
@@ -126,18 +133,20 @@ namespace basehub
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(387, 19);
+            this.label2.Location = new System.Drawing.Point(719, 41);
+            this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 15);
+            this.label2.Size = new System.Drawing.Size(120, 32);
             this.label2.TabIndex = 4;
             this.label2.Text = "Map Type";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 19);
+            this.label1.Location = new System.Drawing.Point(11, 41);
+            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 15);
+            this.label1.Size = new System.Drawing.Size(104, 32);
             this.label1.TabIndex = 3;
             this.label1.Text = "Loaction";
             // 
@@ -146,15 +155,16 @@ namespace basehub
             this.comboBox_mapType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_mapType.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.comboBox_mapType.FormattingEnabled = true;
-            this.comboBox_mapType.ItemHeight = 23;
+            this.comboBox_mapType.ItemHeight = 47;
             this.comboBox_mapType.Items.AddRange(new object[] {
             "roadmap",
             "satelllite",
             "terrain",
             "hybrid"});
-            this.comboBox_mapType.Location = new System.Drawing.Point(387, 37);
+            this.comboBox_mapType.Location = new System.Drawing.Point(719, 79);
+            this.comboBox_mapType.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.comboBox_mapType.Name = "comboBox_mapType";
-            this.comboBox_mapType.Size = new System.Drawing.Size(121, 31);
+            this.comboBox_mapType.Size = new System.Drawing.Size(221, 55);
             this.comboBox_mapType.TabIndex = 0;
             this.comboBox_mapType.SelectedIndexChanged += new System.EventHandler(this.comboBox_MapType_SelectedIndexChanged);
             // 
@@ -163,10 +173,11 @@ namespace basehub
             this.groupBox_MapControls.Controls.Add(this.numericUpDown_mapSize);
             this.groupBox_MapControls.Controls.Add(this.trackBar_mapZoom);
             this.groupBox_MapControls.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.groupBox_MapControls.Location = new System.Drawing.Point(1158, 12);
-            this.groupBox_MapControls.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.groupBox_MapControls.Location = new System.Drawing.Point(2151, 26);
+            this.groupBox_MapControls.Margin = new System.Windows.Forms.Padding(6, 0, 6, 6);
             this.groupBox_MapControls.Name = "groupBox_MapControls";
-            this.groupBox_MapControls.Size = new System.Drawing.Size(94, 535);
+            this.groupBox_MapControls.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.groupBox_MapControls.Size = new System.Drawing.Size(175, 1141);
             this.groupBox_MapControls.TabIndex = 5;
             this.groupBox_MapControls.TabStop = false;
             this.groupBox_MapControls.Text = "Map Controls";
@@ -174,14 +185,15 @@ namespace basehub
             // numericUpDown_mapSize
             // 
             this.numericUpDown_mapSize.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericUpDown_mapSize.Location = new System.Drawing.Point(25, 498);
+            this.numericUpDown_mapSize.Location = new System.Drawing.Point(46, 1062);
+            this.numericUpDown_mapSize.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.numericUpDown_mapSize.Maximum = new decimal(new int[] {
             20,
             0,
             0,
             0});
             this.numericUpDown_mapSize.Name = "numericUpDown_mapSize";
-            this.numericUpDown_mapSize.Size = new System.Drawing.Size(45, 31);
+            this.numericUpDown_mapSize.Size = new System.Drawing.Size(84, 54);
             this.numericUpDown_mapSize.TabIndex = 2;
             this.numericUpDown_mapSize.Value = new decimal(new int[] {
             15,
@@ -194,12 +206,13 @@ namespace basehub
             // 
             this.trackBar_mapZoom.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.trackBar_mapZoom.LargeChange = 3;
-            this.trackBar_mapZoom.Location = new System.Drawing.Point(25, 22);
+            this.trackBar_mapZoom.Location = new System.Drawing.Point(46, 47);
+            this.trackBar_mapZoom.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.trackBar_mapZoom.Maximum = 20;
             this.trackBar_mapZoom.Name = "trackBar_mapZoom";
             this.trackBar_mapZoom.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.trackBar_mapZoom.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.trackBar_mapZoom.Size = new System.Drawing.Size(45, 470);
+            this.trackBar_mapZoom.Size = new System.Drawing.Size(90, 1003);
             this.trackBar_mapZoom.TabIndex = 1;
             this.trackBar_mapZoom.Value = 15;
             this.trackBar_mapZoom.ValueChanged += new System.EventHandler(this.trackBar_MapZoom_ValueChanged);
@@ -211,9 +224,11 @@ namespace basehub
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.groupBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(22, 26);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1140, 930);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.groupBox1.Size = new System.Drawing.Size(2117, 1984);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Map";
@@ -223,9 +238,11 @@ namespace basehub
             this.groupBox_Telemetry.Controls.Add(this.comboBox_selectDorne);
             this.groupBox_Telemetry.Controls.Add(this.dataGridView1);
             this.groupBox_Telemetry.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.groupBox_Telemetry.Location = new System.Drawing.Point(1258, 12);
+            this.groupBox_Telemetry.Location = new System.Drawing.Point(2336, 26);
+            this.groupBox_Telemetry.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.groupBox_Telemetry.Name = "groupBox_Telemetry";
-            this.groupBox_Telemetry.Size = new System.Drawing.Size(634, 535);
+            this.groupBox_Telemetry.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.groupBox_Telemetry.Size = new System.Drawing.Size(1177, 1141);
             this.groupBox_Telemetry.TabIndex = 7;
             this.groupBox_Telemetry.TabStop = false;
             this.groupBox_Telemetry.Text = "UAS Telemetry";
@@ -234,45 +251,52 @@ namespace basehub
             // 
             this.comboBox_selectDorne.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.comboBox_selectDorne.FormattingEnabled = true;
-            this.comboBox_selectDorne.Location = new System.Drawing.Point(6, 22);
+            this.comboBox_selectDorne.Location = new System.Drawing.Point(11, 47);
+            this.comboBox_selectDorne.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.comboBox_selectDorne.Name = "comboBox_selectDorne";
-            this.comboBox_selectDorne.Size = new System.Drawing.Size(198, 31);
+            this.comboBox_selectDorne.Size = new System.Drawing.Size(364, 55);
             this.comboBox_selectDorne.TabIndex = 1;
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 59);
+            this.dataGridView1.Location = new System.Drawing.Point(11, 126);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 82;
             this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(622, 470);
+            this.dataGridView1.Size = new System.Drawing.Size(1155, 1003);
             this.dataGridView1.TabIndex = 0;
             // 
             // groupBox2
             // 
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.groupBox2.Location = new System.Drawing.Point(1159, 553);
+            this.groupBox2.Location = new System.Drawing.Point(2152, 1180);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(733, 476);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.groupBox2.Size = new System.Drawing.Size(1361, 1015);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "UAS Camera Feed";
             // 
             // main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.ClientSize = new System.Drawing.Size(3004, 1959);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox_Telemetry);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox_MapControls);
             this.Controls.Add(this.groupBox_MapData);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.MaximumSize = new System.Drawing.Size(1920, 1080);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.MaximumSize = new System.Drawing.Size(3543, 2224);
             this.Name = "main";
             this.Text = "BaseHub";
+            this.Shown += new System.EventHandler(this.main_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_map)).EndInit();
             this.groupBox_MapData.ResumeLayout(false);
             this.groupBox_MapData.PerformLayout();
