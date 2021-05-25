@@ -13,51 +13,80 @@ namespace basehub
         {
 
         }
-        
-        //name of the map
+
+        /// <summary>
+        /// name of the map
+        /// </summary>
         public string Name { get; set; }
 
-        //memory location of save map image 
+        /// <summary>
+        /// memory path of saved map image<
+        /// </summary>
         public string Path { get; set; }
 
-        //location query from google static maps api
+        /// <summary>
+        /// location query from google static maps api
+        /// </summary>
         public string Query { get; set; }
 
-        //type of the map
+        /// <summary>
+        /// illustration type of the map
+        /// </summary>
         public string Type { get; set; }
 
-        //width in pixels from map in picture box
+        /// <summary>
+        /// width in pixels from map in picture box<
+        /// </summary>
         public int Width { get;  set; }
 
-        //height in pixels from map in picture box
+        /// <summary>
+        /// height in pixels from map in picture box
+        /// </summary>
         public int Height { get; set; }
 
-        //zoom stage from google static maps api
+        /// <summary>
+        /// zoom stage from google static maps api
+        /// </summary>
         public int Zoom { get; set; }
 
-        //map scale from google static maps api
+        /// <summary>
+        /// map scale from google static maps api
+        /// </summary>
         public int Scale { get; set; }
 
-        //latitude coordinates of map center from google geocoding api
+        /// <summary>
+        /// latitude coordinates of map center from google geocoding api
+        /// </summary>
         public float coordsLat { get; set; }
 
-        //longitude coordinates of map center from google geocoding api
+        /// <summary>
+        /// longitude coordinates of map center from google geocoding api
+        /// </summary>
         public float coordLng { get; set; }
 
-        //pixel to degrees ration in x direction
+        /// <summary>
+        /// pixel to degrees ration in x direction
+        /// </summary>
         public float scaleX { get; set; }
 
-        //pixel to degrees ration in y direction
+        /// <summary>
+        /// pixel to degrees ration in y direction
+        /// </summary>
         public float scaleY { get; set; }
 
-        //calculates the pixel to degree ratios in both directions
+        /// <summary>
+        /// calculates the pixel to degree ratios in both directions
+        /// </summary>
         public void calcScale()
         {
             scaleX = 360 / ((Width/Scale) * (float)Math.Pow(2, Zoom));
             scaleY = 180 / ((Height/Scale) * (float)Math.Pow(2, Zoom));
         }
 
-        //maps a JObject to the class properties
+        /// <summary>
+        /// maps a JObject to the class properties
+        /// </summary>
+        /// <param name="data"></param>
         public void ParseJObject(JObject data)
         {
             try
@@ -79,6 +108,16 @@ namespace basehub
             {
                 System.Diagnostics.Debug.WriteLine(ex);
             }
+        }
+        /// <summary>
+        /// returns the properties of BaseHubMap as JObject
+        /// </summary>
+        /// <returns></returns>
+        public JObject GetJObject()
+        {
+            JObject mapData = new JObject();
+            mapData = (JObject)JToken.FromObject(this);
+            return mapData;
         }
     }
 }

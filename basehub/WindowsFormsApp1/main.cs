@@ -84,11 +84,8 @@ namespace basehub
 
                 }
 
-                //Load MapData from BaseHubMap Class into JObject
-                JObject newMapData = (JObject)JToken.FromObject(map);
-
                 //add newMapData to mapData
-                mapData.Add($"map_{mapData.Count}", newMapData);
+                mapData.Add($"map_{mapData.Count}", map.GetJObject());
 
                 //save mapData to File
                 SaveJobjectToFile(mapData, path);
@@ -115,11 +112,9 @@ namespace basehub
                 //Create new JObject to parse MapData into
                 JObject mapData = new JObject();
 
-                //Parse Map Class to JOject and save it to path
-                JObject mapDataClass = (JObject)JToken.FromObject(map);
 
                 //Add mapDataClass as first children of mapIndex
-                mapData.Add("map_0", mapDataClass);
+                mapData.Add("map_0", map.GetJObject());
 
                 //save mapData to File
                 SaveJobjectToFile(mapData, path);
