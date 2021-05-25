@@ -19,6 +19,9 @@ namespace basehub
     {
         HttpClient httpClient = new HttpClient();
         BaseHubMap map = new BaseHubMap();
+        
+        //file path of map data
+        string mapDataPath = "C:\\MapData\\map.json";
 
         public main()
         {            
@@ -120,6 +123,11 @@ namespace basehub
                 SaveJobjectToFile(mapData, path);
                 return true;
             }
+        }
+
+        private void LoadMapData(string path)
+        {
+            //TODO
         }
 
         private void SaveJobjectToFile(JObject data, string path)
@@ -233,7 +241,7 @@ namespace basehub
                 stream.Close();
             }
 
-            SaveMapData(map, "C:\\MapData\\map.json");
+            SaveMapData(map, mapDataPath);
 
         }
 
@@ -259,6 +267,9 @@ namespace basehub
 
                 Image image = Image.FromStream(fileStream);
                 pictureBox_map.Image = image;
+
+                
+
             }
         }
 
