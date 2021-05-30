@@ -41,19 +41,28 @@ namespace basehub
                 data = response.Content.ReadAsStringAsync().Result;
                 return true;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(e.ToString());
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
                 data = "";
                 return false;
             }
 
         }
 
-        private Stream HttpGetStream(Uri uri)
+        private bool HttpGetStream(Uri uri, out Stream stream)
         {
-            Stream data = httpClient.GetStreamAsync(uri).Result;
-            return data;
+            try
+            {
+                stream = httpClient.GetStreamAsync(uri).Result;
+                return true;
+            }
+            catch(Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                stream = null;
+                return false;
+            }            
         }
 
         private int GetMapSize(int width, int height, int scale, out string size)
@@ -123,12 +132,15 @@ namespace basehub
         {
             if (File.Exists(path))
             {
+                //load configurations from ini.json
                 JObject iniData = LoadJobjectFromFile(path);
+                
                 mapDataPath = iniData["mapDataPath"].ToString();
                 apiKey = iniData["apiKey"].ToString();
             }
             else
             {
+                //create new ini.json
                 JObject iniData = new JObject();
 
                 iniData.Add("mapDataPath", Microsoft.VisualBasic.Interaction.InputBox("Enter Map Data Path","Map Data Path"));
@@ -139,6 +151,7 @@ namespace basehub
 
         private void LoadMapData(string imagePath)
         {
+            //loads the corresponding map data to the selected image
             JObject mapsData = LoadJobjectFromFile(mapDataPath);
             for(int i = 0; i < mapsData.Count; i++)
             {
@@ -148,11 +161,13 @@ namespace basehub
                     return;
                 }
             }
-            
+            //throws error when there is no matching data to the selected map
+            MessageBox.Show("No Data for loaded map available");
         }
 
         private void SaveJobjectToFile(JObject data, string path)
         {
+            //Saves a JObject to a file
             using (StreamWriter file = File.CreateText(path))
             using (JsonTextWriter writer = new JsonTextWriter(file))
             {
@@ -163,7 +178,6 @@ namespace basehub
         private JObject LoadJobjectFromFile(string path)
         {
             JObject data;
-
             //Load Data from File into JObject
             using (StreamReader file = File.OpenText(path))
             using (JsonTextReader reader = new JsonTextReader(file))
@@ -216,8 +230,12 @@ namespace basehub
             locationUri.Query = $"address={map.Query}&key={apiKey}";
 
             //Download the desired map from google maps and display it in picture box
-            var image = Image.FromStream(HttpGetStream(imageUri.Uri));
-            pictureBox_map.Image = image;
+            Stream imageStream;
+            if(HttpGetStream(imageUri.Uri,out imageStream))
+            {
+                var image = Image.FromStream(imageStream);
+                pictureBox_map.Image = image;
+            }
 
             //Get the corresponding coordinates from the center of the map using the same query
             if (HttpGetString(locationUri.Uri,out string data))
