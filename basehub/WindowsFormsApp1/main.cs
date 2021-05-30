@@ -21,7 +21,9 @@ namespace basehub
         BaseHubMap map = new BaseHubMap();
         
         //file path of map data
-        string mapDataPath = "C:\\MapData\\map.json";
+        string mapDataPath;
+        //API Key for Google Cloud Platform
+        string apiKey;
 
         public main()
         {            
@@ -123,21 +125,30 @@ namespace basehub
             {
                 JObject iniData = LoadJobjectFromFile(path);
                 mapDataPath = iniData["mapDataPath"].ToString();
-                
+                apiKey = iniData["apiKey"].ToString();
             }
             else
             {
                 JObject iniData = new JObject();
 
                 iniData.Add("mapDataPath", Microsoft.VisualBasic.Interaction.InputBox("Enter Map Data Path","Map Data Path"));
-                //iniData.Add(")
+                iniData.Add("apiKey", Microsoft.VisualBasic.Interaction.InputBox("Enter Google Cloud Platform API Key", "Api Key"));
                 SaveJobjectToFile(iniData, path);
             }
         }
 
-        private void LoadMapData(string path)
+        private void LoadMapData(string imagePath)
         {
-            //TODO
+            JObject mapsData = LoadJobjectFromFile(mapDataPath);
+            for(int i = 0; i < mapsData.Count; i++)
+            {
+                if ((string)mapsData[$"map_{i}"]["Path"] == imagePath)
+                {
+                    map.ParseJObject((JObject)mapsData[$"map_{i}"]);
+                    return;
+                }
+            }
+            
         }
 
         private void SaveJobjectToFile(JObject data, string path)
@@ -190,8 +201,6 @@ namespace basehub
             map.Type = comboBox_mapType.Text;
             map.calcScale();
 
-            string apiKey = "AIzaSyC4BIZBnmh0nkMR2u7wtrk0eQtwublOG9c";
-
             //Build Google Maps Static API Request
             UriBuilder imageUri = new UriBuilder();
             imageUri.Scheme = "http";
@@ -214,8 +223,8 @@ namespace basehub
             if (HttpGetString(locationUri.Uri,out string data))
             {
                 JObject locationData = JObject.Parse(data);
-                map.coordsLat = (float)locationData["results"][0]["geometry"]["location"]["lat"];
-                map.coordLng = (float)locationData["results"][0]["geometry"]["location"]["lng"];
+                map.Latitude = (double)locationData["results"][0]["geometry"]["location"]["lat"];
+                map.Longitude = (double)locationData["results"][0]["geometry"]["location"]["lng"];
             };
             
         }
@@ -229,6 +238,7 @@ namespace basehub
         {
             trackBar_mapZoom.Value = (int)numericUpDown_mapSize.Value;
         }
+        
         private void comboBox_MapType_SelectedIndexChanged(object sender, EventArgs e)
         {
             button_search.Enabled = true;
@@ -287,8 +297,7 @@ namespace basehub
                 //Open File into FileStream from path
                 FileStream fileStream = File.OpenRead(openFileDialog.FileName);
 
-                map.Path = openFileDialog.FileName;
-                map.Name = Path.GetFileName(map.Path);
+                LoadMapData(openFileDialog.FileName);
 
                 Image image = Image.FromStream(fileStream);
                 pictureBox_map.Image = image;
@@ -297,8 +306,9 @@ namespace basehub
 
         private void main_Shown(object sender, EventArgs e)
         {
-            DevTestBench();
-            LoadIni("\\Resources\\ini.json");
+            //Load ini.json from Ressource Directory
+            string ressourceDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
+            LoadIni($"{ressourceDirectory}\\Resources\\ini.json");
         }
     }
 }
