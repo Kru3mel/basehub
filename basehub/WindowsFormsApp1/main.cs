@@ -76,16 +76,8 @@ namespace basehub
         {
             if (File.Exists(path))
             {
-                //Create new JObjcet
-                JObject mapData;
-
-                //Load the Map Data from File into JObject
-                using (StreamReader file = File.OpenText(path))
-                using (JsonTextReader reader = new JsonTextReader(file))
-                {
-                    mapData = (JObject)JToken.ReadFrom(reader);
-
-                }
+                //Load mapData from File
+                JObject mapData = LoadJobjectFromFile(path);
 
                 //add newMapData to mapData
                 mapData.Add($"map_{mapData.Count}", map.GetJObject());
@@ -125,6 +117,24 @@ namespace basehub
             }
         }
 
+        private void LoadIni(string path)
+        {
+            if (File.Exists(path))
+            {
+                JObject iniData = LoadJobjectFromFile(path);
+                mapDataPath = iniData["mapDataPath"].ToString();
+                
+            }
+            else
+            {
+                JObject iniData = new JObject();
+
+                iniData.Add("mapDataPath", Microsoft.VisualBasic.Interaction.InputBox("Enter Map Data Path","Map Data Path"));
+                //iniData.Add(")
+                SaveJobjectToFile(iniData, path);
+            }
+        }
+
         private void LoadMapData(string path)
         {
             //TODO
@@ -137,6 +147,21 @@ namespace basehub
             {
                 data.WriteTo(writer);
             }
+        }
+
+        private JObject LoadJobjectFromFile(string path)
+        {
+            JObject data;
+
+            //Load Data from File into JObject
+            using (StreamReader file = File.OpenText(path))
+            using (JsonTextReader reader = new JsonTextReader(file))
+            {
+                data = (JObject)JToken.ReadFrom(reader);
+
+            }
+
+            return data;
         }
 
         private void DevTestBench()
@@ -267,15 +292,13 @@ namespace basehub
 
                 Image image = Image.FromStream(fileStream);
                 pictureBox_map.Image = image;
-
-                
-
             }
         }
 
         private void main_Shown(object sender, EventArgs e)
         {
             DevTestBench();
+            LoadIni("\\Resources\\ini.json");
         }
     }
 }

@@ -149,7 +149,7 @@ namespace basehub
             this.comboBox_mapType.ItemHeight = 23;
             this.comboBox_mapType.Items.AddRange(new object[] {
             "roadmap",
-            "satelllite",
+            "satellite",
             "terrain",
             "hybrid"});
             this.comboBox_mapType.Location = new System.Drawing.Point(387, 37);
