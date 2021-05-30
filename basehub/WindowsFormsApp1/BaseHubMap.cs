@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
+using System.Globalization;
 
 namespace basehub
 {
@@ -57,30 +58,30 @@ namespace basehub
         /// <summary>
         /// latitude coordinates of map center from google geocoding api
         /// </summary>
-        public float coordsLat { get; set; }
+        public double Latitude { get; set; }
 
         /// <summary>
         /// longitude coordinates of map center from google geocoding api
         /// </summary>
-        public float coordLng { get; set; }
+        public double Longitude { get; set; }
 
         /// <summary>
         /// pixel to degrees ration in x direction
         /// </summary>
-        public float scaleX { get; set; }
+        public double ScaleX { get; set; }
 
         /// <summary>
         /// pixel to degrees ration in y direction
         /// </summary>
-        public float scaleY { get; set; }
+        public double ScaleY { get; set; }
 
         /// <summary>
         /// calculates the pixel to degree ratios in both directions
         /// </summary>
         public void calcScale()
         {
-            scaleX = 360 / ((Width/Scale) * (float)Math.Pow(2, Zoom));
-            scaleY = 180 / ((Height/Scale) * (float)Math.Pow(2, Zoom));
+            ScaleX = 360 / ((Width/Scale) * Math.Pow(2, Zoom));
+            ScaleY = 180 / ((Height/Scale) * Math.Pow(2, Zoom));
         }
 
         /// <summary>
@@ -91,18 +92,19 @@ namespace basehub
         {
             try
             {
-                Name = data.Property("Name").Value.ToString();
-                Path = data.Property("Path").Value.ToString();
-                Query = data.Property("Query").Value.ToString();
-                Type = data.Property("Type").Value.ToString();
-                Width = (int)data.Property("Width").Value;
-                Height = (int)data.Property("Height").Value;
-                Zoom = (int)data.Property("Zoom").Value;
-                Scale = (int)data.Property("Path").Value;
-                coordsLat = (float)data.Property("Path").Value;
-                coordLng = (float)data.Property("Path").Value;
-                scaleX = (float)data.Property("Path").Value;
-                scaleY = (float)data.Property("Path").Value;
+                Name = data["Name"].ToString();
+                Path = data["Path"].ToString();
+                Query = data["Query"].ToString();
+                Type = data["Type"].ToString();
+                Width = (int)data["Width"];
+                Height = (int)data["Height"];
+                Zoom = (int)data["Zoom"];
+                Scale = (int)data["Scale"];
+
+                Latitude = (double)data["Latitude"];
+                Longitude = (double)data["Longitude"];
+                ScaleX = (double)data["ScaleX"];
+                ScaleY = (double)data["ScaleY"];
             }
             catch(Exception ex)
             {
