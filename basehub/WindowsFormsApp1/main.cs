@@ -12,6 +12,7 @@ using System.Net.Http;
 using System.IO;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using WatsonWebserver;
 
 namespace basehub
 {
@@ -28,6 +29,11 @@ namespace basehub
         public main()
         {            
             InitializeComponent();
+            
+            Server webServer = new Server("127.0.0.1", 9000, false, DefaultRequest);            
+            webServer.Routes.Static.Add(WatsonWebserver.HttpMethod.GET, "/telemetry/", GetDroneTelemetrie);
+            webServer.Start();            
+        
         }
 
         #region methods
@@ -198,7 +204,60 @@ namespace basehub
             button_save.PerformClick();
         }
 
+        #region Webserver
 
+        static async Task DefaultRequest(HttpContext ctx)
+        {
+            //Default Response for HttpRequest
+            await ctx.Response.Send("BaseHub Web Server online");
+        }
+
+        async Task GetDroneTelemetrie(HttpContext ctx)
+        {
+            Telemetry telemetry = new Telemetry();
+            
+            try
+            {
+                telemetry.Name = ctx.Request.Query.Elements["name"];
+            }
+            catch(Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex);
+                await ctx.Response.Send("Error: The name of the drone is a required key value pair");
+            }
+            
+            telemetry.Heading = ctx.Request.Query.Elements["heading"];
+
+            telemetry.Latitude = float.Parse(ctx.Request.Query.Elements["lat"]);
+            telemetry.Longitude = float.Parse(ctx.Request.Query.Elements["long"]);
+            
+            telemetry.Height = int.Parse(ctx.Request.Query.Elements["height"]);
+            telemetry.Velocity = int.Parse(ctx.Request.Query.Elements["velocity"]);
+            telemetry.Battery = int.Parse(ctx.Request.Query.Elements["battery"]);
+
+            System.Diagnostics.Debug.WriteLine(ctx.Request.Query.Querystring);
+            await ctx.Response.Send("Drone Telemetry received successfully");          
+
+            RefreshTelemetry(telemetry);
+        }
+
+        public void RefreshTelemetry(Telemetry telemetry)
+        {
+            UpdateControl(comboBox_selectDorne, telemetry.Name);
+            UpdateControl(textBox_latitude, telemetry.Latitude.ToString());
+            UpdateControl(textBox_longitude, telemetry.Longitude.ToString());
+            UpdateControl(textBox_height, telemetry.Height.ToString());
+            UpdateControl(textBox_velocity, telemetry.Velocity.ToString());
+            UpdateControl(textBox_heading, telemetry.Heading);
+            UpdateControl(textBox_battery, telemetry.Battery.ToString());
+        }
+
+        public static void UpdateControl(Control control, string newText)
+        {
+            control.Invoke(new Action(() => control.Text = newText));
+        }
+
+        #endregion
         #endregion
 
         private void Button_Search_Click(object sender, EventArgs e)

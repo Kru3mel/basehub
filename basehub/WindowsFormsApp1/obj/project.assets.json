@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     "net5.0-windows7.0": {
+      "IpMatcher/1.0.4.1": {
+        "type": "package",
+        "compile": {
+          "lib/net5.0/IpMatcher.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/IpMatcher.dll": {}
+        }
+      },
       "Newtonsoft.Json/13.0.1": {
         "type": "package",
         "compile": {
@@ -10,10 +19,61 @@
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
+      },
+      "RegexMatcher/1.0.7": {
+        "type": "package",
+        "compile": {
+          "lib/net5.0/RegexMatcher.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/RegexMatcher.dll": {}
+        }
+      },
+      "UrlMatcher/1.0.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net5.0/UrlMatcher.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/UrlMatcher.dll": {}
+        }
+      },
+      "Watson/4.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "IpMatcher": "1.0.4.1",
+          "Newtonsoft.Json": "12.0.3",
+          "RegexMatcher": "1.0.7",
+          "UrlMatcher": "1.0.0.1"
+        },
+        "compile": {
+          "lib/net5.0/WatsonWebserver.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/WatsonWebserver.dll": {}
+        }
       }
     }
   },
   "libraries": {
+    "IpMatcher/1.0.4.1": {
+      "sha512": "Vk2wok2/ea6vLZUHUjxdVchLfMkFx+ABeOyLhV7HQmha+m2geFM93yPuEZfm0dv078KYPt6GHvwBHT62Nm9CSw==",
+      "type": "package",
+      "path": "ipmatcher/1.0.4.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "ipmatcher.1.0.4.1.nupkg.sha512",
+        "ipmatcher.nuspec",
+        "lib/net452/IpMatcher.dll",
+        "lib/net5.0/IpMatcher.dll",
+        "lib/netcoreapp3.1/IpMatcher.dll",
+        "lib/netstandard2.0/IpMatcher.dll",
+        "lib/netstandard2.0/IpMatcher.xml",
+        "lib/netstandard2.1/IpMatcher.dll"
+      ]
+    },
     "Newtonsoft.Json/13.0.1": {
       "sha512": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
       "type": "package",
@@ -40,11 +100,74 @@
         "newtonsoft.json.nuspec",
         "packageIcon.png"
       ]
+    },
+    "RegexMatcher/1.0.7": {
+      "sha512": "UvR1Hf3YaLgCUj5Ec7lELvS+iPotID44c/+v+TiGCNWz90T5V/t7rF3RXURNQMmORn0fGcJXTqgeR6gKOuF+8w==",
+      "type": "package",
+      "path": "regexmatcher/1.0.7",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "lib/net462/RegexMatcher.dll",
+        "lib/net5.0/RegexMatcher.dll",
+        "lib/netcoreapp2.0/RegexMatcher.dll",
+        "lib/netcoreapp3.0/RegexMatcher.dll",
+        "lib/netcoreapp3.1/RegexMatcher.dll",
+        "lib/netstandard2.0/RegexMatcher.dll",
+        "lib/netstandard2.0/RegexMatcher.xml",
+        "lib/netstandard2.1/RegexMatcher.dll",
+        "regexmatcher.1.0.7.nupkg.sha512",
+        "regexmatcher.nuspec"
+      ]
+    },
+    "UrlMatcher/1.0.0.1": {
+      "sha512": "KLgHJet7xudjVb++zC4q5WGQeK+fCSR5iUATePqmDN9SmphTBK2LFEtLbg9wUmNkq0Z5C7qDKlGzyAeGAtxOXg==",
+      "type": "package",
+      "path": "urlmatcher/1.0.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "icon.png",
+        "lib/net452/UrlMatcher.dll",
+        "lib/net452/UrlMatcher.xml",
+        "lib/net5.0/UrlMatcher.dll",
+        "lib/net5.0/UrlMatcher.xml",
+        "lib/netcoreapp3.1/UrlMatcher.dll",
+        "lib/netcoreapp3.1/UrlMatcher.xml",
+        "lib/netstandard2.0/UrlMatcher.dll",
+        "lib/netstandard2.0/UrlMatcher.xml",
+        "lib/netstandard2.1/UrlMatcher.dll",
+        "lib/netstandard2.1/UrlMatcher.xml",
+        "urlmatcher.1.0.0.1.nupkg.sha512",
+        "urlmatcher.nuspec"
+      ]
+    },
+    "Watson/4.2.0.1": {
+      "sha512": "COYAse2C78bE8aLJRCXYtJL7GN5XTip990JxAnL0ghaZf/FSaANeqYQORey9OyOvL8UKumAd23jXvYYPKp9VUA==",
+      "type": "package",
+      "path": "watson/4.2.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "lib/net462/WatsonWebserver.dll",
+        "lib/net5.0/WatsonWebserver.dll",
+        "lib/netcoreapp3.1/WatsonWebserver.dll",
+        "lib/netcoreapp3.1/WatsonWebserver.xml",
+        "lib/netstandard2.0/WatsonWebserver.dll",
+        "lib/netstandard2.1/WatsonWebserver.dll",
+        "watson.4.2.0.1.nupkg.sha512",
+        "watson.nuspec",
+        "watson.png"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "net5.0-windows7.0": [
-      "Newtonsoft.Json >= 13.0.1"
+      "Newtonsoft.Json >= 13.0.1",
+      "Watson >= 4.2.0.1"
     ]
   },
   "packageFolders": {
@@ -89,6 +212,10 @@
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[13.0.1, )"
+          },
+          "Watson": {
+            "target": "Package",
+            "version": "[4.2.0.1, )"
           }
         },
         "imports": [

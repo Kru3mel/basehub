@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Watson" Version="4.2.0.1" />
   </ItemGroup>
 
   <ItemGroup>
