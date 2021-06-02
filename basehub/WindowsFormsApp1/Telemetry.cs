@@ -17,7 +17,7 @@ namespace basehub
         {
             this.Name = name;
             this.Longitude = longitude;
-            this.Longitude = latitude;
+            this.Latitude = latitude;
             this.Height = height;
             this.Velocity = velocity;
             this.Heading = heading;
