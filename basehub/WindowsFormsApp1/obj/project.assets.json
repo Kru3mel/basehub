@@ -171,19 +171,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Malte\\.nuget\\packages\\": {}
+    "C:\\Users\\malte\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\GitHub\\basehub\\basehub\\WindowsFormsApp1\\basehub.csproj",
+      "projectUniqueName": "C:\\Users\\malte\\Documents\\GitHub\\basehub\\basehub\\WindowsFormsApp1\\basehub.csproj",
       "projectName": "basehub",
-      "projectPath": "C:\\GitHub\\basehub\\basehub\\WindowsFormsApp1\\basehub.csproj",
-      "packagesPath": "C:\\Users\\Malte\\.nuget\\packages\\",
-      "outputPath": "C:\\GitHub\\basehub\\basehub\\WindowsFormsApp1\\obj\\",
+      "projectPath": "C:\\Users\\malte\\Documents\\GitHub\\basehub\\basehub\\WindowsFormsApp1\\basehub.csproj",
+      "packagesPath": "C:\\Users\\malte\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\malte\\Documents\\GitHub\\basehub\\basehub\\WindowsFormsApp1\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Malte\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\malte\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -236,8 +240,16 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem beim Lesen der Cachedatei \"C:\\Users\\malte\\Documents\\GitHub\\basehub\\basehub\\WindowsFormsApp1\\obj\\project.nuget.cache\": Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
