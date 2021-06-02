@@ -218,8 +218,6 @@ namespace basehub
 
         async Task GetDroneTelemetrie(HttpContext ctx)
         {
-            
-            
             try
             {
                 telemetry.Name = ctx.Request.Query.Elements["name"];
@@ -240,7 +238,7 @@ namespace basehub
             telemetry.Battery = int.Parse(ctx.Request.Query.Elements["battery"]);
 
             System.Diagnostics.Debug.WriteLine(ctx.Request.Query.Querystring);
-            await ctx.Response.Send("Drone Telemetry received successfully");          
+            await ctx.Response.Send("Drone Telemetry received successfully");
 
             RefreshTelemetry(telemetry);
         }
@@ -263,6 +261,8 @@ namespace basehub
 
         #endregion
 
+        #region test
+
         private void DevTestBench()
         {
             textBox_location.Text = "Eilenburg";
@@ -271,6 +271,9 @@ namespace basehub
             button_search.PerformClick();
             button_save.PerformClick();
         }
+        #endregion
+
+        #region events
 
         private void Button_Search_Click(object sender, EventArgs e)
         {
@@ -399,6 +402,7 @@ namespace basehub
             string ressourceDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
             LoadIni($"{ressourceDirectory}\\Resources\\ini.json");
         }
+        #endregion
     }
 }
 
