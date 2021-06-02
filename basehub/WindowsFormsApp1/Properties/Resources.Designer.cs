@@ -59,15 +59,5 @@ namespace basehub.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap alba_berlin_start_header {
-            get {
-                object obj = ResourceManager.GetObject("alba-berlin-start-header", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }
