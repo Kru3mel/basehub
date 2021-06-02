@@ -18,9 +18,12 @@ namespace basehub
 {
     public partial class main : Form
     {
+        #region setup
+
         HttpClient httpClient = new HttpClient();
         BaseHubMap map = new BaseHubMap();
-        
+        Telemetry telemetry = new Telemetry();
+
         //file path of map data
         string mapDataPath;
         //API Key for Google Cloud Platform
@@ -36,7 +39,29 @@ namespace basehub
         
         }
 
-        #region methods
+        private void LoadIni(string path)
+        {
+            if (File.Exists(path))
+            {
+                //load configurations from ini.json
+                JObject iniData = LoadJobjectFromFile(path);
+
+                mapDataPath = iniData["mapDataPath"].ToString();
+                apiKey = iniData["apiKey"].ToString();
+            }
+            else
+            {
+                //create new ini.json
+                JObject iniData = new JObject();
+
+                iniData.Add("mapDataPath", Microsoft.VisualBasic.Interaction.InputBox("Enter Map Data Path", "Map Data Path"));
+                iniData.Add("apiKey", Microsoft.VisualBasic.Interaction.InputBox("Enter Google Cloud Platform API Key", "Api Key"));
+                SaveJobjectToFile(iniData, path);
+            }
+        }
+        #endregion
+
+        #region httpCLient
 
         private bool HttpGetString(Uri uri, out string data)
         {
@@ -71,6 +96,9 @@ namespace basehub
             }            
         }
 
+        #endregion
+
+        #region mapData
         private int GetMapSize(int width, int height, int scale, out string size)
         {
             if (width > 640 || height > 640)
@@ -132,28 +160,7 @@ namespace basehub
                 SaveJobjectToFile(mapData, path);
                 return true;
             }
-        }
-
-        private void LoadIni(string path)
-        {
-            if (File.Exists(path))
-            {
-                //load configurations from ini.json
-                JObject iniData = LoadJobjectFromFile(path);
-                
-                mapDataPath = iniData["mapDataPath"].ToString();
-                apiKey = iniData["apiKey"].ToString();
-            }
-            else
-            {
-                //create new ini.json
-                JObject iniData = new JObject();
-
-                iniData.Add("mapDataPath", Microsoft.VisualBasic.Interaction.InputBox("Enter Map Data Path","Map Data Path"));
-                iniData.Add("apiKey", Microsoft.VisualBasic.Interaction.InputBox("Enter Google Cloud Platform API Key", "Api Key"));
-                SaveJobjectToFile(iniData, path);
-            }
-        }
+        }      
 
         private void LoadMapData(string imagePath)
         {
@@ -170,6 +177,10 @@ namespace basehub
             //throws error when there is no matching data to the selected map
             MessageBox.Show("No Data for loaded map available");
         }
+
+        #endregion       
+
+        #region JSON
 
         private void SaveJobjectToFile(JObject data, string path)
         {
@@ -195,14 +206,7 @@ namespace basehub
             return data;
         }
 
-        private void DevTestBench()
-        {
-            textBox_location.Text = "Eilenburg";
-            comboBox_mapType.Text = "hybrid";
-            button_search.Enabled = true;
-            button_search.PerformClick();
-            button_save.PerformClick();
-        }
+        #endregion
 
         #region Webserver
 
@@ -214,7 +218,7 @@ namespace basehub
 
         async Task GetDroneTelemetrie(HttpContext ctx)
         {
-            Telemetry telemetry = new Telemetry();
+            
             
             try
             {
@@ -258,7 +262,15 @@ namespace basehub
         }
 
         #endregion
-        #endregion
+
+        private void DevTestBench()
+        {
+            textBox_location.Text = "Eilenburg";
+            comboBox_mapType.Text = "hybrid";
+            button_search.Enabled = true;
+            button_search.PerformClick();
+            button_save.PerformClick();
+        }
 
         private void Button_Search_Click(object sender, EventArgs e)
         {
