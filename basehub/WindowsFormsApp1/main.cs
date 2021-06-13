@@ -13,6 +13,8 @@ using System.IO;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using WatsonWebserver;
+using System.Data.SQLite;
+using SixLabors.ImageSharp.Drawing;
 
 namespace basehub
 {
@@ -25,18 +27,17 @@ namespace basehub
         Telemetry telemetry = new Telemetry();
 
         //file path of map data
-        string mapDataPath;
+        string dataDirectory;
         //API Key for Google Cloud Platform
         string apiKey;
+
+        string _telemetryDatabaseName = "telemetry.db";
+        string _mapDataFileName = "MapData.json";
 
         public main()
         {            
             InitializeComponent();
-            
-            Server webServer = new Server("127.0.0.1", 9000, false, DefaultRequest);            
-            webServer.Routes.Static.Add(WatsonWebserver.HttpMethod.GET, "/telemetry/", GetDroneTelemetrie);
-            webServer.Start();            
-        
+            WebServerSetup();
         }
 
         private void LoadIni(string path)
@@ -46,7 +47,7 @@ namespace basehub
                 //load configurations from ini.json
                 JObject iniData = LoadJobjectFromFile(path);
 
-                mapDataPath = iniData["mapDataPath"].ToString();
+                dataDirectory = iniData["dataDirectory"].ToString();
                 apiKey = iniData["apiKey"].ToString();
             }
             else
@@ -54,8 +55,9 @@ namespace basehub
                 //create new ini.json
                 JObject iniData = new JObject();
 
-                iniData.Add("mapDataPath", Microsoft.VisualBasic.Interaction.InputBox("Enter Map Data Path", "Map Data Path"));
+                iniData.Add("dataDirectory", Microsoft.VisualBasic.Interaction.InputBox("Enter Data Directory", "Data Directory"));
                 iniData.Add("apiKey", Microsoft.VisualBasic.Interaction.InputBox("Enter Google Cloud Platform API Key", "Api Key"));
+                
                 SaveJobjectToFile(iniData, path);
             }
         }
@@ -135,12 +137,12 @@ namespace basehub
             else
             {
                 //Check of the Directory to save to exists
-                if (!Directory.Exists(Path.GetDirectoryName(path)))
+                if (!Directory.Exists(System.IO.Path.GetDirectoryName(path)))
                 {
                     //Try to create the non existing Directory
                     try
                     {
-                        Directory.CreateDirectory(Path.GetDirectoryName(path));
+                        Directory.CreateDirectory(System.IO.Path.GetDirectoryName(path));
                     }
                     catch
                     {
@@ -165,7 +167,7 @@ namespace basehub
         private void LoadMapData(string imagePath)
         {
             //loads the corresponding map data to the selected image
-            JObject mapsData = LoadJobjectFromFile(mapDataPath);
+            JObject mapsData = LoadJobjectFromFile(dataDirectory+_mapDataFileName);
             for(int i = 0; i < mapsData.Count; i++)
             {
                 if ((string)mapsData[$"map_{i}"]["Path"] == imagePath)
@@ -209,6 +211,14 @@ namespace basehub
         #endregion
 
         #region Webserver
+
+        private void WebServerSetup()
+        {
+            Server webServer = new Server("localhost", 9000, false, DefaultRequest);
+
+            webServer.Routes.Static.Add(WatsonWebserver.HttpMethod.GET, "/telemetry/", GetDroneTelemetrie);
+            webServer.Start();
+        }
 
         static async Task DefaultRequest(HttpContext ctx)
         {
@@ -261,15 +271,31 @@ namespace basehub
 
         #endregion
 
+        #region SQLite
+
+        private void LoadTelemetryDatabase(string dataBasePath)
+        {
+            string dbPath = dataBasePath + "telemetry.db";
+            if (!File.Exists(dbPath))
+            {
+                SQLiteConnection.CreateFile(dbPath);
+            }
+            return;
+        }
+
+        #endregion
+
         #region test
 
         private void DevTestBench()
         {
+            /*
             textBox_location.Text = "Eilenburg";
             comboBox_mapType.Text = "hybrid";
             button_search.Enabled = true;
             button_search.PerformClick();
-            button_save.PerformClick();
+            button_save.PerformClick();*/
+
         }
         #endregion
 
@@ -307,7 +333,7 @@ namespace basehub
             Stream imageStream;
             if(HttpGetStream(imageUri.Uri,out imageStream))
             {
-                var image = Image.FromStream(imageStream);
+                var image = System.Drawing.Image.FromStream(imageStream);
                 pictureBox_map.Image = image;
             }
 
@@ -364,11 +390,11 @@ namespace basehub
                 FileStream stream = File.Create(path);
                 pictureBox_map.Image.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
                 map.Path = stream.Name;
-                map.Name = Path.GetFileName(stream.Name);
+                map.Name = System.IO.Path.GetFileName(stream.Name);
                 stream.Close();
             }
 
-            SaveMapData(map, mapDataPath);
+            SaveMapData(map, dataDirectory+_mapDataFileName);
 
         }
 
@@ -391,7 +417,7 @@ namespace basehub
 
                 LoadMapData(openFileDialog.FileName);
 
-                Image image = Image.FromStream(fileStream);
+                System.Drawing.Image image = System.Drawing.Image.FromStream(fileStream);
                 pictureBox_map.Image = image;
             }
         }
@@ -401,8 +427,16 @@ namespace basehub
             //Load ini.json from Ressource Directory
             string ressourceDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
             LoadIni($"{ressourceDirectory}\\Resources\\ini.json");
+            LoadTelemetryDatabase(dataDirectory+_telemetryDatabaseName);
         }
+
         #endregion
+
+        private void pictureBox_map_DoubleClick(object sender, EventArgs e)
+        {
+            MouseEventArgs mouse = e as MouseEventArgs;
+            MessageBox.Show($"X: {mouse.X}  Y: {mouse.Y}");   
+        }
     }
 }
 
