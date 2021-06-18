@@ -10,7 +10,12 @@ namespace basehub
     {
         public Telemetry()
         {
-
+            this.Longitude = 0;
+            this.Latitude = 0;
+            this.Height = -1;
+            this.Velocity = -1;
+            this.Heading = "unknown";
+            this.Battery = -1;
         }
 
         public Telemetry(string name,double latitude,double longitude, int height, int velocity, string heading, int battery)
@@ -22,7 +27,7 @@ namespace basehub
             this.Velocity = velocity;
             this.Heading = heading;
             this.Battery = battery;
-        }
+        }     
 
         public string Name { set; get; }
 
