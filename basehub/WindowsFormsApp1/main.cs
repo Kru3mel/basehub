@@ -13,7 +13,6 @@ using System.IO;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using WatsonWebserver;
-using System.Data.SQLite;
 using SixLabors.ImageSharp.Drawing;
 
 namespace basehub
@@ -23,8 +22,8 @@ namespace basehub
         #region setup
 
         HttpClient httpClient = new HttpClient();
-        BaseHubMap map = new BaseHubMap();
-        Telemetry telemetry = new Telemetry();
+        BaseHubMap map = new BaseHubMap();        
+        SqLiteDataBase dataBase = new SqLiteDataBase();
 
         //file path of map data
         string dataDirectory;
@@ -228,14 +227,20 @@ namespace basehub
 
         async Task GetDroneTelemetrie(HttpContext ctx)
         {
+            Telemetry telemetry = new Telemetry();
             try
             {
                 telemetry.Name = ctx.Request.Query.Elements["name"];
+                if (!comboBox_selectDorne.Items.Contains(telemetry.Name))
+                {
+                    UpdateDroneCombobox(comboBox_selectDorne, telemetry.Name);
+                }                
             }
             catch(Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex);
                 await ctx.Response.Send("Error: The name of the drone is a required key value pair");
+                return;
             }
             
             telemetry.Heading = ctx.Request.Query.Elements["heading"];
@@ -250,23 +255,49 @@ namespace basehub
             System.Diagnostics.Debug.WriteLine(ctx.Request.Query.Querystring);
             await ctx.Response.Send("Drone Telemetry received successfully");
 
-            RefreshTelemetry(telemetry);
+            //add Telemetry to Database
+            dataBase.InsertTelemetry(telemetry);
+
+            //update shown telemetry
+            if (GetSelectedItem(comboBox_selectDorne)==telemetry.Name)
+            {
+                RefreshTelemetry(dataBase.SelectLatestTelemetry(telemetry.Name));
+            }            
         }
 
         public void RefreshTelemetry(Telemetry telemetry)
         {
-            UpdateControl(comboBox_selectDorne, telemetry.Name);
-            UpdateControl(textBox_latitude, telemetry.Latitude.ToString());
-            UpdateControl(textBox_longitude, telemetry.Longitude.ToString());
-            UpdateControl(textBox_height, telemetry.Height.ToString());
-            UpdateControl(textBox_velocity, telemetry.Velocity.ToString());
-            UpdateControl(textBox_heading, telemetry.Heading);
-            UpdateControl(textBox_battery, telemetry.Battery.ToString());
+            UpdateControlText(comboBox_selectDorne, telemetry.Name);
+            UpdateControlText(textBox_latitude, telemetry.Latitude.ToString());
+            UpdateControlText(textBox_longitude, telemetry.Longitude.ToString());
+            UpdateControlText(textBox_height, telemetry.Height.ToString());
+            UpdateControlText(textBox_velocity, telemetry.Velocity.ToString());
+            UpdateControlText(textBox_heading, telemetry.Heading);
+            UpdateControlText(textBox_battery, telemetry.Battery.ToString());
         }
 
-        public static void UpdateControl(Control control, string newText)
+        public static void UpdateControlText(Control control, string newText)
         {
-            control.Invoke(new Action(() => control.Text = newText));
+            control.Invoke(new Action(() => control.Text = newText));             
+        }
+
+        public static void UpdateDroneCombobox(ComboBox box, string newItem)
+        {
+            box.Invoke(new Action(() => box.Items.Add(newItem)));            
+        }
+
+        public static string GetSelectedItem(ComboBox box)
+        {
+            string selectedItem = "";
+            try
+            {
+                box.Invoke(new MethodInvoker(delegate () { selectedItem = box.SelectedItem.ToString(); }));
+                return selectedItem;
+            }
+            catch
+            {
+                return selectedItem;
+            }
         }
 
         #endregion
@@ -413,14 +444,21 @@ namespace basehub
             //Load ini.json from Ressource Directory
             string ressourceDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
             LoadIni($"{ressourceDirectory}\\Resources\\ini.json");
+            dataBase.CreateDatabase(dataDirectory + _telemetryDatabaseName);
+            
         }
 
         #endregion
 
         private void pictureBox_map_DoubleClick(object sender, EventArgs e)
-        {
+        {            
             MouseEventArgs mouse = e as MouseEventArgs;
-            MessageBox.Show($"X: {mouse.X}  Y: {mouse.Y}");   
+            MessageBox.Show($"X: {mouse.X}  Y: {mouse.Y}");            
+        }
+
+        private void comboBox_selectDorne_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshTelemetry(dataBase.SelectLatestTelemetry(comboBox_selectDorne.SelectedItem.ToString()));
         }
     }
 }
