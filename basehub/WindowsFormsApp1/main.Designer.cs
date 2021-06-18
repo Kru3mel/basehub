@@ -43,23 +43,23 @@ namespace basehub
             this.trackBar_mapZoom = new System.Windows.Forms.TrackBar();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox_Telemetry = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.textBox_battery = new System.Windows.Forms.TextBox();
+            this.textBox_velocity = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBox_heading = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox_distance = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBox_height = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox_longitude = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox_latitude = new System.Windows.Forms.TextBox();
             this.comboBox_selectDorne = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBox_latitude = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox_longitude = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBox_height = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox_distance = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textBox_heading = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBox_velocity = new System.Windows.Forms.TextBox();
-            this.textBox_battery = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_map)).BeginInit();
             this.groupBox_MapData.SuspendLayout();
             this.groupBox_MapControls.SuspendLayout();
@@ -76,6 +76,7 @@ namespace basehub
             this.pictureBox_map.Size = new System.Drawing.Size(1128, 909);
             this.pictureBox_map.TabIndex = 0;
             this.pictureBox_map.TabStop = false;
+            this.pictureBox_map.DoubleClick += new System.EventHandler(this.pictureBox_map_DoubleClick);
             // 
             // button_search
             // 
@@ -257,140 +258,15 @@ namespace basehub
             this.groupBox_Telemetry.TabStop = false;
             this.groupBox_Telemetry.Text = "Telemetry";
             // 
-            // comboBox_selectDorne
+            // label10
             // 
-            this.comboBox_selectDorne.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.comboBox_selectDorne.FormattingEnabled = true;
-            this.comboBox_selectDorne.Location = new System.Drawing.Point(6, 50);
-            this.comboBox_selectDorne.Name = "comboBox_selectDorne";
-            this.comboBox_selectDorne.Size = new System.Drawing.Size(198, 31);
-            this.comboBox_selectDorne.TabIndex = 1;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.groupBox2.Location = new System.Drawing.Point(1159, 553);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(733, 476);
-            this.groupBox2.TabIndex = 8;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "UAS Camera Feed";
-            // 
-            // textBox_latitude
-            // 
-            this.textBox_latitude.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox_latitude.Location = new System.Drawing.Point(6, 112);
-            this.textBox_latitude.Name = "textBox_latitude";
-            this.textBox_latitude.Size = new System.Drawing.Size(326, 33);
-            this.textBox_latitude.TabIndex = 2;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(6, 84);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 25);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Latitude";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(6, 148);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(97, 25);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Longitude";
-            // 
-            // textBox_longitude
-            // 
-            this.textBox_longitude.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox_longitude.Location = new System.Drawing.Point(6, 176);
-            this.textBox_longitude.Name = "textBox_longitude";
-            this.textBox_longitude.Size = new System.Drawing.Size(326, 33);
-            this.textBox_longitude.TabIndex = 5;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(5, 212);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(68, 25);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "Height";
-            // 
-            // textBox_height
-            // 
-            this.textBox_height.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox_height.Location = new System.Drawing.Point(6, 240);
-            this.textBox_height.Name = "textBox_height";
-            this.textBox_height.Size = new System.Drawing.Size(326, 33);
-            this.textBox_height.TabIndex = 7;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(5, 276);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(84, 25);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "Distance";
-            // 
-            // textBox_distance
-            // 
-            this.textBox_distance.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox_distance.Location = new System.Drawing.Point(6, 304);
-            this.textBox_distance.Name = "textBox_distance";
-            this.textBox_distance.Size = new System.Drawing.Size(326, 33);
-            this.textBox_distance.TabIndex = 9;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(6, 340);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(83, 25);
-            this.label7.TabIndex = 10;
-            this.label7.Text = "Heading";
-            // 
-            // textBox_heading
-            // 
-            this.textBox_heading.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox_heading.Location = new System.Drawing.Point(5, 368);
-            this.textBox_heading.Name = "textBox_heading";
-            this.textBox_heading.Size = new System.Drawing.Size(326, 33);
-            this.textBox_heading.TabIndex = 11;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label8.Location = new System.Drawing.Point(5, 404);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(78, 25);
-            this.label8.TabIndex = 12;
-            this.label8.Text = "Velocity";
-            // 
-            // textBox_velocity
-            // 
-            this.textBox_velocity.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox_velocity.Location = new System.Drawing.Point(5, 432);
-            this.textBox_velocity.Name = "textBox_velocity";
-            this.textBox_velocity.Size = new System.Drawing.Size(326, 33);
-            this.textBox_velocity.TabIndex = 13;
-            // 
-            // textBox_battery
-            // 
-            this.textBox_battery.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox_battery.Location = new System.Drawing.Point(5, 497);
-            this.textBox_battery.Name = "textBox_battery";
-            this.textBox_battery.Size = new System.Drawing.Size(326, 33);
-            this.textBox_battery.TabIndex = 14;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label10.Location = new System.Drawing.Point(6, 22);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(111, 25);
+            this.label10.TabIndex = 16;
+            this.label10.Text = "Dronename";
             // 
             // label9
             // 
@@ -402,15 +278,141 @@ namespace basehub
             this.label9.TabIndex = 15;
             this.label9.Text = "Battery";
             // 
-            // label10
+            // textBox_battery
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label10.Location = new System.Drawing.Point(6, 22);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(111, 25);
-            this.label10.TabIndex = 16;
-            this.label10.Text = "Dronename";
+            this.textBox_battery.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox_battery.Location = new System.Drawing.Point(5, 497);
+            this.textBox_battery.Name = "textBox_battery";
+            this.textBox_battery.Size = new System.Drawing.Size(326, 33);
+            this.textBox_battery.TabIndex = 14;
+            // 
+            // textBox_velocity
+            // 
+            this.textBox_velocity.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox_velocity.Location = new System.Drawing.Point(5, 432);
+            this.textBox_velocity.Name = "textBox_velocity";
+            this.textBox_velocity.Size = new System.Drawing.Size(326, 33);
+            this.textBox_velocity.TabIndex = 13;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label8.Location = new System.Drawing.Point(5, 404);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(78, 25);
+            this.label8.TabIndex = 12;
+            this.label8.Text = "Velocity";
+            // 
+            // textBox_heading
+            // 
+            this.textBox_heading.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox_heading.Location = new System.Drawing.Point(5, 368);
+            this.textBox_heading.Name = "textBox_heading";
+            this.textBox_heading.Size = new System.Drawing.Size(326, 33);
+            this.textBox_heading.TabIndex = 11;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label7.Location = new System.Drawing.Point(6, 340);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(83, 25);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "Heading";
+            // 
+            // textBox_distance
+            // 
+            this.textBox_distance.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox_distance.Location = new System.Drawing.Point(6, 304);
+            this.textBox_distance.Name = "textBox_distance";
+            this.textBox_distance.Size = new System.Drawing.Size(326, 33);
+            this.textBox_distance.TabIndex = 9;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label6.Location = new System.Drawing.Point(5, 276);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(84, 25);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "Distance";
+            // 
+            // textBox_height
+            // 
+            this.textBox_height.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox_height.Location = new System.Drawing.Point(6, 240);
+            this.textBox_height.Name = "textBox_height";
+            this.textBox_height.Size = new System.Drawing.Size(326, 33);
+            this.textBox_height.TabIndex = 7;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label5.Location = new System.Drawing.Point(5, 212);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(68, 25);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Height";
+            // 
+            // textBox_longitude
+            // 
+            this.textBox_longitude.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox_longitude.Location = new System.Drawing.Point(6, 176);
+            this.textBox_longitude.Name = "textBox_longitude";
+            this.textBox_longitude.Size = new System.Drawing.Size(326, 33);
+            this.textBox_longitude.TabIndex = 5;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(6, 148);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(97, 25);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Longitude";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(6, 84);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(80, 25);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Latitude";
+            // 
+            // textBox_latitude
+            // 
+            this.textBox_latitude.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox_latitude.Location = new System.Drawing.Point(6, 112);
+            this.textBox_latitude.Name = "textBox_latitude";
+            this.textBox_latitude.Size = new System.Drawing.Size(326, 33);
+            this.textBox_latitude.TabIndex = 2;
+            // 
+            // comboBox_selectDorne
+            // 
+            this.comboBox_selectDorne.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.comboBox_selectDorne.FormattingEnabled = true;
+            this.comboBox_selectDorne.Location = new System.Drawing.Point(6, 50);
+            this.comboBox_selectDorne.Name = "comboBox_selectDorne";
+            this.comboBox_selectDorne.Size = new System.Drawing.Size(198, 31);
+            this.comboBox_selectDorne.TabIndex = 1;
+            this.comboBox_selectDorne.SelectedIndexChanged += new System.EventHandler(this.comboBox_selectDorne_SelectedIndexChanged);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.groupBox2.Location = new System.Drawing.Point(1159, 553);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(733, 476);
+            this.groupBox2.TabIndex = 8;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "UAS Camera Feed";
             // 
             // main
             // 
