@@ -271,20 +271,6 @@ namespace basehub
 
         #endregion
 
-        #region SQLite
-
-        private void LoadTelemetryDatabase(string dataBasePath)
-        {
-            string dbPath = dataBasePath + "telemetry.db";
-            if (!File.Exists(dbPath))
-            {
-                SQLiteConnection.CreateFile(dbPath);
-            }
-            return;
-        }
-
-        #endregion
-
         #region test
 
         private void DevTestBench()
@@ -427,7 +413,6 @@ namespace basehub
             //Load ini.json from Ressource Directory
             string ressourceDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
             LoadIni($"{ressourceDirectory}\\Resources\\ini.json");
-            LoadTelemetryDatabase(dataDirectory+_telemetryDatabaseName);
         }
 
         #endregion

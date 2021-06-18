@@ -37,7 +37,18 @@ namespace basehub.classes
         {
             SQLiteConnection connection = new SQLiteConnection(connectionString);
             connection.Open();
-
+            /*
+             CREATE TABLE "telemetry" (
+	            "id"	INTEGER,
+	            "name"	TEXT NOT NULL,
+	            "longitude"	REAL,
+	            "latitude"	REAL,
+	            "height"	INTEGER,
+	            "heading"	TEXT,
+	            "battery"	INTEGER,
+	            PRIMARY KEY("id" AUTOINCREMENT)
+            );
+             */
             connection.Close();
         }
 
