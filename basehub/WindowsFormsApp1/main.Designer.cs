@@ -402,6 +402,7 @@ namespace basehub
             this.comboBox_selectDorne.Name = "comboBox_selectDorne";
             this.comboBox_selectDorne.Size = new System.Drawing.Size(198, 31);
             this.comboBox_selectDorne.TabIndex = 1;
+            this.comboBox_selectDorne.SelectedIndexChanged += new System.EventHandler(this.comboBox_selectDorne_SelectedIndexChanged);
             // 
             // groupBox2
             // 
