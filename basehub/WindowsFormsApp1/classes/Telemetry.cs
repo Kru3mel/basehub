@@ -10,6 +10,7 @@ namespace basehub
     {
         public Telemetry()
         {
+            this.Time = DateTime.Now;
             this.Longitude = 0;
             this.Latitude = 0;
             this.Height = -1;
@@ -18,18 +19,9 @@ namespace basehub
             this.Battery = -1;
         }
 
-        public Telemetry(string name,double latitude,double longitude, int height, int velocity, string heading, int battery)
-        {
-            this.Name = name;
-            this.Longitude = longitude;
-            this.Latitude = latitude;
-            this.Height = height;
-            this.Velocity = velocity;
-            this.Heading = heading;
-            this.Battery = battery;
-        }     
-
         public string Name { set; get; }
+
+        public DateTime Time { set; get; }
 
         public double Latitude { set; get; }
 
