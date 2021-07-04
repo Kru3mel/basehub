@@ -41,9 +41,11 @@ namespace basehub
                 CREATE TABLE IF NOT EXISTS telemetry (
 	                id	INTEGER PRIMARY KEY AUTOINCREMENT,
                     name	TEXT NOT NULL,
+                    time TEXT,
 	                longitude	REAL,
 	                latitude	REAL,
 	                height	INTEGER,
+                    velocity INTEGER,
 	                heading	TEXT,
 	                battery	INTEGER)";
             SQLiteCommand command = new SQLiteCommand(sqlCommand, connection);
@@ -55,16 +57,18 @@ namespace basehub
         {
             SQLiteConnection connection = new SQLiteConnection(ConnectionString);
             connection.Open();
-            string sqlCommand = "INSERT INTO telemetry (name, longitude, latitude, height, heading, battery)" +
-                                " VALUES(@name, @longitude, @latitude, @height, @heading, @battery)";
+            string sqlCommand = "INSERT INTO telemetry (name, time, longitude, latitude, height, velocity, heading, battery)" +
+                                " VALUES(@name, @time, @longitude, @latitude, @height, @velocity, @heading, @battery)";
             SQLiteCommand command = new SQLiteCommand(sqlCommand, connection);
             
             //add parameters and values to command
             command.Parameters.AddWithValue("@name", telemetry.Name);
+            command.Parameters.AddWithValue("@time", telemetry.Time);
             command.Parameters.AddWithValue("@longitude", telemetry.Longitude);
             command.Parameters.AddWithValue("@latitude", telemetry.Latitude);
             command.Parameters.AddWithValue("@height", telemetry.Height);
             command.Parameters.AddWithValue("@heading", telemetry.Heading);
+            command.Parameters.AddWithValue("@velocity", telemetry.Velocity);
             command.Parameters.AddWithValue("@battery", telemetry.Battery);
 
             //execute command
@@ -89,11 +93,13 @@ namespace basehub
                 if (reader.Read())
                 {
                     telemetry.Name = reader.GetString(1);
-                    telemetry.Longitude = reader.GetDouble(2);
-                    telemetry.Latitude = reader.GetDouble(3);
-                    telemetry.Height = reader.GetInt16(4);
-                    telemetry.Heading = reader.GetString(5);
-                    telemetry.Battery = reader.GetInt16(6);
+                    telemetry.Time = reader.GetDateTime(2);
+                    telemetry.Longitude = reader.GetDouble(3);
+                    telemetry.Latitude = reader.GetDouble(4);
+                    telemetry.Height = reader.GetInt16(5);
+                    telemetry.Velocity = reader.GetInt16(6);
+                    telemetry.Heading = reader.GetString(7);
+                    telemetry.Battery = reader.GetInt16(8);
                 }
             }
          
