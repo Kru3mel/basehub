@@ -13,6 +13,7 @@ using System.IO;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using WatsonWebserver;
+using System.Globalization;
 using SixLabors.ImageSharp.Drawing;
 
 namespace basehub
@@ -242,14 +243,15 @@ namespace basehub
                 await ctx.Response.Send("Error: The name of the drone is a required key value pair");
                 return;
             }
-            
-            telemetry.Heading = ctx.Request.Query.Elements["heading"];
 
-            telemetry.Latitude = float.Parse(ctx.Request.Query.Elements["lat"]);
-            telemetry.Longitude = float.Parse(ctx.Request.Query.Elements["long"]);
-            
+            telemetry.Time = DateTime.Now;            
+
+            telemetry.Latitude = double.Parse(ctx.Request.Query.Elements["lat"],CultureInfo.InvariantCulture);
+            telemetry.Longitude = double.Parse(ctx.Request.Query.Elements["long"],CultureInfo.InvariantCulture);            
             telemetry.Height = int.Parse(ctx.Request.Query.Elements["height"]);
+            
             telemetry.Velocity = int.Parse(ctx.Request.Query.Elements["velocity"]);
+            telemetry.Heading = ctx.Request.Query.Elements["heading"];
             telemetry.Battery = int.Parse(ctx.Request.Query.Elements["battery"]);
 
             System.Diagnostics.Debug.WriteLine(ctx.Request.Query.Querystring);
