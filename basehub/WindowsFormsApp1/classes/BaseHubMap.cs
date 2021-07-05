@@ -68,20 +68,20 @@ namespace basehub
         /// <summary>
         /// pixel to degrees ration in x direction
         /// </summary>
-        public double ScaleX { get; set; }
+        public double ScaleLng { get; set; }
 
         /// <summary>
         /// pixel to degrees ration in y direction
         /// </summary>
-        public double ScaleY { get; set; }
+        public double ScaleLat { get; set; }
 
         /// <summary>
         /// calculates the pixel to degree ratios in both directions
         /// </summary>
         public void calcScale()
         {
-            ScaleX = 360 / ((Width/Scale) * Math.Pow(2, Zoom));
-            ScaleY = 180 / ((Height/Scale) * Math.Pow(2, Zoom));
+            ScaleLng = 360 / ((Width/Scale) * Math.Pow(2, Zoom)) * Math.Cos(Latitude);
+            ScaleLat = 180 / ((Height/Scale) * Math.Pow(2, Zoom));
         }
 
         /// <summary>
@@ -103,8 +103,8 @@ namespace basehub
 
                 Latitude = (double)data["Latitude"];
                 Longitude = (double)data["Longitude"];
-                ScaleX = (double)data["ScaleX"];
-                ScaleY = (double)data["ScaleY"];
+                ScaleLng = (double)data["ScaleX"];
+                ScaleLat = (double)data["ScaleY"];
             }
             catch(Exception ex)
             {

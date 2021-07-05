@@ -307,13 +307,12 @@ namespace basehub
         #region test
 
         private void DevTestBench()
-        {
-            /*
+        {            
             textBox_location.Text = "Eilenburg";
             comboBox_mapType.Text = "hybrid";
             button_search.Enabled = true;
             button_search.PerformClick();
-            button_save.PerformClick();*/
+            //button_save.PerformClick();
 
         }
         #endregion
@@ -331,8 +330,7 @@ namespace basehub
 
             string size;
             map.Scale = GetMapSize(pictureBox_map.Width, pictureBox_map.Height, 1, out size);
-            map.Type = comboBox_mapType.Text;
-            map.calcScale();
+            map.Type = comboBox_mapType.Text;            
 
             //Build Google Maps Static API Request
             UriBuilder imageUri = new UriBuilder();
@@ -363,7 +361,7 @@ namespace basehub
                 map.Latitude = (double)locationData["results"][0]["geometry"]["location"]["lat"];
                 map.Longitude = (double)locationData["results"][0]["geometry"]["location"]["lng"];
             };
-            
+            map.calcScale();
         }
 
         private void trackBar_MapZoom_ValueChanged(object sender, EventArgs e)
@@ -447,7 +445,7 @@ namespace basehub
             string ressourceDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
             LoadIni($"{ressourceDirectory}\\Resources\\ini.json");
             dataBase.CreateDatabase(dataDirectory + _telemetryDatabaseName);
-            
+            DevTestBench();
         }
 
         #endregion
@@ -455,7 +453,13 @@ namespace basehub
         private void pictureBox_map_DoubleClick(object sender, EventArgs e)
         {            
             MouseEventArgs mouse = e as MouseEventArgs;
-            MessageBox.Show($"X: {mouse.X}  Y: {mouse.Y}");            
+            int distanceX = mouse.X - map.Width / 2;
+            int distanceY = map.Height / 2 - mouse.Y;
+
+            double coordsLng = map.Latitude + map.ScaleLat * distanceX;
+            double coordsLat = map.Longitude + map.ScaleLng * distanceY;
+
+            MessageBox.Show($"Lat: {coordsLng}, Long: {coordsLat}");
         }
 
         private void comboBox_selectDorne_SelectedIndexChanged(object sender, EventArgs e)
