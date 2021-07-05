@@ -14,11 +14,20 @@ namespace basehub
         {
             
         }
-
+        /// <summary>
+        /// memory path of database
+        /// </summary>
         public string Path { set; get; }
 
+        /// <summary>
+        /// connection string to connect to database
+        /// </summary>
         public string ConnectionString { set; get; }
 
+        /// <summary>
+        /// creates a database if database doesn't already exist
+        /// </summary>
+        /// <param name="path"></param>
         public void CreateDatabase(string path)
         {
             Path = path;
@@ -33,6 +42,9 @@ namespace basehub
             return;
         }
 
+        /// <summary>
+        /// creates telemetry table in database if table doesn't already exist
+        /// </summary>
         public void CreateTelemetryTable()
         {
             SQLiteConnection connection = new SQLiteConnection(ConnectionString);
@@ -53,6 +65,10 @@ namespace basehub
             connection.Close();
         }
 
+        /// <summary>
+        /// inserts new telemetry into telemetry database
+        /// </summary>
+        /// <param name="telemetry"></param>
         public void InsertTelemetry(Telemetry telemetry)
         {
             SQLiteConnection connection = new SQLiteConnection(ConnectionString);
@@ -76,6 +92,11 @@ namespace basehub
             connection.Close();
         }
 
+        /// <summary>
+        /// gets last entry of specified name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public Telemetry SelectLatestTelemetry(string name)
         {
             Telemetry telemetry = new Telemetry();
