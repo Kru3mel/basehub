@@ -26,13 +26,20 @@ namespace basehub
         BaseHubMap map = new BaseHubMap();        
         SqLiteDataBase dataBase = new SqLiteDataBase();
 
+        PictureBox homeMarker;
+
         //file path of map data
         string dataDirectory;
+        //file path of ressources
+        string ressourceDirectory;
         //API Key for Google Cloud Platform
         string apiKey;
 
         string _telemetryDatabaseName = "telemetry.db";
         string _mapDataFileName = "MapData.json";
+        
+        int contextmenuX;
+        int contextmenuY;
 
         public main()
         {            
@@ -180,6 +187,27 @@ namespace basehub
             MessageBox.Show("No Data for loaded map available");
         }
 
+        private void PlaceHomeMarker(int x, int y)
+        {
+            if(homeMarker == null){
+                homeMarker = new PictureBox();
+                homeMarker.SizeMode = PictureBoxSizeMode.StretchImage;
+                homeMarker.Size = new Size(50, 50);
+                homeMarker.Location = new Point(x-homeMarker.Width/2, y-homeMarker.Height);
+                homeMarker.Image = Image.FromFile($"{ressourceDirectory}\\Resources\\home_marker.png");
+                pictureBox_map.Controls.Add(homeMarker);
+            }
+            else
+            {
+                homeMarker.Location = new Point(x, y);
+            }            
+        }
+
+        private void PlaceUasMarker(int x, int y)
+        {
+
+        }
+
         #endregion       
 
         #region JSON
@@ -307,13 +335,20 @@ namespace basehub
         #region test
 
         private void DevTestBench()
-        {            
+        {         
+            /*
             textBox_location.Text = "Eilenburg";
             comboBox_mapType.Text = "hybrid";
             button_search.Enabled = true;
             button_search.PerformClick();
-            //button_save.PerformClick();
+            //button_save.PerformClick();*/
 
+        }
+
+        private void pictureBox_map_DoubleClick(object sender, EventArgs e)
+        {
+            MouseEventArgs mouse = e as MouseEventArgs;
+            MessageBox.Show($"Lat: {mouse.X}, Long: {mouse.Y}");
         }
         #endregion
 
@@ -442,29 +477,38 @@ namespace basehub
         private void main_Shown(object sender, EventArgs e)
         {
             //Load ini.json from Ressource Directory
-            string ressourceDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
+            ressourceDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
             LoadIni($"{ressourceDirectory}\\Resources\\ini.json");
             dataBase.CreateDatabase(dataDirectory + _telemetryDatabaseName);
             DevTestBench();
-        }
-
-        #endregion
-
-        private void pictureBox_map_DoubleClick(object sender, EventArgs e)
-        {            
-            MouseEventArgs mouse = e as MouseEventArgs;
-            int distanceX = mouse.X - map.Width / 2;
-            int distanceY = map.Height / 2 - mouse.Y;
-
-            double coordsLng = map.Latitude + map.ScaleLat * distanceX;
-            double coordsLat = map.Longitude + map.ScaleLng * distanceY;
-
-            MessageBox.Show($"Lat: {coordsLng}, Long: {coordsLat}");
-        }
+        }        
 
         private void comboBox_selectDorne_SelectedIndexChanged(object sender, EventArgs e)
         {
             RefreshTelemetry(dataBase.SelectLatestTelemetry(comboBox_selectDorne.SelectedItem.ToString()));
+        }
+
+        #endregion
+
+        private void contextMenuMap_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if(e.ClickedItem.Name == "toolStripMenuItemSetHome")
+            {
+                PlaceHomeMarker(contextmenuX, contextmenuY);
+            }
+            else if(e.ClickedItem.Name == "toolStripMenuItemGetCoords")
+            {
+                MessageBox.Show($"Lat: {map.getLongitude(contextmenuX)}, Long: {map.getLatitude(contextmenuY)}");
+            }
+        }
+
+        private void pictureBox_map_MouseUp(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Right)
+            {
+                contextmenuX = e.Location.X;
+                contextmenuY = e.Location.Y;
+            }
         }
     }
 }
