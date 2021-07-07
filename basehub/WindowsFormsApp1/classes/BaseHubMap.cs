@@ -85,6 +85,50 @@ namespace basehub
         }
 
         /// <summary>
+        /// Returns the corresponding Longitude of x-Coordinate
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public double getLongitude(int x)
+        {
+            int distanceX = x - Width / 2;
+            return Latitude + ScaleLat * distanceX;
+        }
+
+        /// <summary>
+        /// Returns corresponding x-Coordinate of Longitude
+        /// </summary>
+        /// <param name="longitude"></param>
+        /// <returns></returns>
+        public int getX(double longitude)
+        {
+            int distanceX = (int)((longitude - Longitude) / ScaleLng);
+            return Width / 2 + distanceX;
+        }
+
+        /// <summary>
+        /// Returns the corresponding Latitude of y-Coordinate
+        /// </summary>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public double getLatitude(int y)
+        {            
+            int distanceY = Height / 2 - y;            
+            return Longitude + ScaleLng * distanceY;
+        }
+
+        /// <summary>
+        /// Returns corresponding y-Coordinate of Latitude
+        /// </summary>
+        /// <param name="latitude"></param>
+        /// <returns></returns>
+        public int getY(double latitude)
+        {
+            int distanceY = (int)((Latitude - latitude) / ScaleLat);
+            return Height / 2 + distanceY;
+        }
+
+        /// <summary>
         /// maps a JObject to the class properties
         /// </summary>
         /// <param name="data"></param>
