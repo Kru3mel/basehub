@@ -29,7 +29,11 @@ namespace basehub
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pictureBox_map = new System.Windows.Forms.PictureBox();
+            this.contextMenuMap = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItemSetHome = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemGetCoords = new System.Windows.Forms.ToolStripMenuItem();
             this.button_search = new System.Windows.Forms.Button();
             this.textBox_location = new System.Windows.Forms.TextBox();
             this.groupBox_MapData = new System.Windows.Forms.GroupBox();
@@ -61,6 +65,7 @@ namespace basehub
             this.comboBox_selectDorne = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_map)).BeginInit();
+            this.contextMenuMap.SuspendLayout();
             this.groupBox_MapData.SuspendLayout();
             this.groupBox_MapControls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_mapSize)).BeginInit();
@@ -71,12 +76,36 @@ namespace basehub
             // 
             // pictureBox_map
             // 
+            this.pictureBox_map.ContextMenuStrip = this.contextMenuMap;
             this.pictureBox_map.Location = new System.Drawing.Point(6, 15);
             this.pictureBox_map.Name = "pictureBox_map";
             this.pictureBox_map.Size = new System.Drawing.Size(1128, 909);
             this.pictureBox_map.TabIndex = 0;
             this.pictureBox_map.TabStop = false;
             this.pictureBox_map.DoubleClick += new System.EventHandler(this.pictureBox_map_DoubleClick);
+            this.pictureBox_map.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_map_MouseUp);
+            // 
+            // contextMenuMap
+            // 
+            this.contextMenuMap.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemSetHome,
+            this.toolStripMenuItemGetCoords});
+            this.contextMenuMap.Name = "contextMenuMap";
+            this.contextMenuMap.Size = new System.Drawing.Size(171, 48);
+            this.contextMenuMap.Text = "Map Controls";
+            this.contextMenuMap.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuMap_ItemClicked);
+            // 
+            // toolStripMenuItemSetHome
+            // 
+            this.toolStripMenuItemSetHome.Name = "toolStripMenuItemSetHome";
+            this.toolStripMenuItemSetHome.Size = new System.Drawing.Size(170, 22);
+            this.toolStripMenuItemSetHome.Text = "Set Home";
+            // 
+            // toolStripMenuItemGetCoords
+            // 
+            this.toolStripMenuItemGetCoords.Name = "toolStripMenuItemGetCoords";
+            this.toolStripMenuItemGetCoords.Size = new System.Drawing.Size(170, 22);
+            this.toolStripMenuItemGetCoords.Text = "Show Coordinates";
             // 
             // button_search
             // 
@@ -431,6 +460,7 @@ namespace basehub
             this.Text = "BaseHub";
             this.Shown += new System.EventHandler(this.main_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_map)).EndInit();
+            this.contextMenuMap.ResumeLayout(false);
             this.groupBox_MapData.ResumeLayout(false);
             this.groupBox_MapData.PerformLayout();
             this.groupBox_MapControls.ResumeLayout(false);
@@ -479,6 +509,9 @@ namespace basehub
         private System.Windows.Forms.TextBox textBox_heading;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBox_distance;
+        private System.Windows.Forms.ContextMenuStrip contextMenuMap;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSetHome;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemGetCoords;
     }
 }
 
