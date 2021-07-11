@@ -27,6 +27,7 @@ namespace basehub
         SqLiteDataBase dataBase = new SqLiteDataBase();
 
         PictureBox homeMarker;
+        PictureBox uasMarker;
 
         //file path of map data
         string dataDirectory;
@@ -193,20 +194,33 @@ namespace basehub
                 homeMarker = new PictureBox();
                 homeMarker.SizeMode = PictureBoxSizeMode.StretchImage;
                 homeMarker.Size = new Size(50, 50);
-                homeMarker.Location = new Point(x-homeMarker.Width/2, y-homeMarker.Height);
+                homeMarker.Location = new Point(x - homeMarker.Width/2, y - homeMarker.Height);
                 homeMarker.Image = Image.FromFile($"{ressourceDirectory}\\Resources\\home_marker.png");
                 homeMarker.BackColor = Color.Transparent;
                 pictureBox_map.Controls.Add(homeMarker);
             }
             else
             {
-                homeMarker.Location = new Point(x, y);
+                homeMarker.Location = new Point(x - homeMarker.Width / 2, y - homeMarker.Height);
             }            
         }
 
         private void PlaceUasMarker(int x, int y)
         {
-
+            if(uasMarker == null)
+            {
+                uasMarker = new PictureBox();
+                uasMarker.SizeMode = PictureBoxSizeMode.StretchImage;
+                uasMarker.Size = new Size(50, 50);
+                uasMarker.Location = new Point(x,y);
+                uasMarker.Image = Image.FromFile($"{ressourceDirectory}\\Resources\\uas_marker.png");
+                uasMarker.BackColor = Color.Transparent;
+                pictureBox_map.Controls.Add(uasMarker);
+            }
+            else
+            {
+                uasMarker.Location = new Point(x, y);
+            }
         }
 
         #endregion       
@@ -243,9 +257,13 @@ namespace basehub
 
         private void WebServerSetup()
         {
+            //Setting up a new webserver
             Server webServer = new Server("localhost", 9000, false, DefaultRequest);
 
+            //Adding telemetry route to webserver
             webServer.Routes.Static.Add(WatsonWebserver.HttpMethod.GET, "/telemetry/", GetDroneTelemetrie);
+            
+            //Staring the WebServer
             webServer.Start();
         }
 
@@ -257,6 +275,7 @@ namespace basehub
 
         async Task GetDroneTelemetrie(HttpContext ctx)
         {
+            //Methode for the telemtry route of the webserver
             Telemetry telemetry = new Telemetry();
             try
             {
@@ -273,16 +292,16 @@ namespace basehub
                 return;
             }
 
+            //Updating Telemetry based on Query Strings
             telemetry.Time = DateTime.Now;            
-
             telemetry.Latitude = double.Parse(ctx.Request.Query.Elements["lat"],CultureInfo.InvariantCulture);
             telemetry.Longitude = double.Parse(ctx.Request.Query.Elements["long"],CultureInfo.InvariantCulture);            
-            telemetry.Height = int.Parse(ctx.Request.Query.Elements["height"]);
-            
+            telemetry.Height = int.Parse(ctx.Request.Query.Elements["height"]);            
             telemetry.Velocity = int.Parse(ctx.Request.Query.Elements["velocity"]);
             telemetry.Heading = ctx.Request.Query.Elements["heading"];
             telemetry.Battery = int.Parse(ctx.Request.Query.Elements["battery"]);
 
+            //Sucess Message
             System.Diagnostics.Debug.WriteLine(ctx.Request.Query.Querystring);
             await ctx.Response.Send("Drone Telemetry received successfully");
 
@@ -292,7 +311,7 @@ namespace basehub
             //update shown telemetry
             if (GetSelectedItem(comboBox_selectDorne)==telemetry.Name)
             {
-                RefreshTelemetry(dataBase.SelectLatestTelemetry(telemetry.Name));
+                RefreshTelemetry(dataBase.SelectLatestTelemetry(telemetry.Name));                               
             }            
         }
 
@@ -305,6 +324,9 @@ namespace basehub
             UpdateControlText(textBox_velocity, telemetry.Velocity.ToString());
             UpdateControlText(textBox_heading, telemetry.Heading);
             UpdateControlText(textBox_battery, telemetry.Battery.ToString());
+            
+            //PlaceUasMarker(map.getX(telemetry.Longitude), map.getY(telemetry.Latitude));
+            this.Invoke(new Action(() => PlaceUasMarker(map.getX(telemetry.Longitude), map.getY(telemetry.Latitude))));
         }
 
         public static void UpdateControlText(Control control, string newText)
@@ -489,15 +511,13 @@ namespace basehub
             RefreshTelemetry(dataBase.SelectLatestTelemetry(comboBox_selectDorne.SelectedItem.ToString()));
         }
 
-        #endregion
-
         private void contextMenuMap_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            if(e.ClickedItem.Name == "toolStripMenuItemSetHome")
+            if (e.ClickedItem.Name == "toolStripMenuItemSetHome")
             {
                 PlaceHomeMarker(contextmenuX, contextmenuY);
             }
-            else if(e.ClickedItem.Name == "toolStripMenuItemGetCoords")
+            else if (e.ClickedItem.Name == "toolStripMenuItemGetCoords")
             {
                 MessageBox.Show($"Lat: {map.getLongitude(contextmenuX)}, Long: {map.getLatitude(contextmenuY)}");
             }
@@ -505,12 +525,13 @@ namespace basehub
 
         private void pictureBox_map_MouseUp(object sender, MouseEventArgs e)
         {
-            if(e.Button == MouseButtons.Right)
+            if (e.Button == MouseButtons.Right)
             {
                 contextmenuX = e.Location.X;
                 contextmenuY = e.Location.Y;
             }
         }
+        #endregion
     }
 }
 

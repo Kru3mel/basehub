@@ -361,3 +361,5 @@ FodyWeavers.xsd
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
 *.tlog
+basehub/.vs/basehub/DesignTimeBuild/.dtbcache.v2
+basehub/.vs/basehub/v16/.suo
