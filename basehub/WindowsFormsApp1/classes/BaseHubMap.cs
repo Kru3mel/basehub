@@ -80,8 +80,8 @@ namespace basehub
         /// </summary>
         public void calcScale()
         {
-            ScaleLng = 360 / ((Width/Scale) * Math.Pow(2, Zoom)) * Math.Cos(Latitude);
-            ScaleLat = 180 / ((Height/Scale) * Math.Pow(2, Zoom));
+            ScaleLng = 360 / (256 * Scale * Math.Pow(2, Zoom)) * Math.Cos(Latitude);
+            ScaleLat = 180 / (256 * Scale * Math.Pow(2, Zoom));
         }
 
         /// <summary>
