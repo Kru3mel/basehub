@@ -195,6 +195,7 @@ namespace basehub
                 homeMarker.Size = new Size(50, 50);
                 homeMarker.Location = new Point(x-homeMarker.Width/2, y-homeMarker.Height);
                 homeMarker.Image = Image.FromFile($"{ressourceDirectory}\\Resources\\home_marker.png");
+                homeMarker.BackColor = Color.Transparent;
                 pictureBox_map.Controls.Add(homeMarker);
             }
             else
@@ -341,7 +342,7 @@ namespace basehub
             comboBox_mapType.Text = "hybrid";
             button_search.Enabled = true;
             button_search.PerformClick();
-            //button_save.PerformClick();*/
+            //button_save.PerformClick(); */
 
         }
 
