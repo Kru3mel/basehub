@@ -80,7 +80,7 @@ namespace basehub
         /// </summary>
         public void calcScale()
         {
-            ScaleLng = 360 / (256 * Scale * Math.Pow(2, Zoom)) * Math.Cos(Latitude);
+            ScaleLng = 360 / (256 * Scale * Math.Pow(2, Zoom)) * Math.Cos(Latitude * Math.PI /180);
             ScaleLat = 180 / (256 * Scale * Math.Pow(2, Zoom));
         }
 
@@ -147,8 +147,8 @@ namespace basehub
 
                 Latitude = (double)data["Latitude"];
                 Longitude = (double)data["Longitude"];
-                ScaleLng = (double)data["ScaleX"];
-                ScaleLat = (double)data["ScaleY"];
+                ScaleLng = (double)data["ScaleLng"];
+                ScaleLat = (double)data["ScaleLat"];
             }
             catch(Exception ex)
             {
