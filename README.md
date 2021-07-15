@@ -1,2 +1,6 @@
-# basehub
-A Program to provide a clear overview over ongoing drone operations.
+# BaseHub
+A Program to provide a clear overview over ongoing uas operations.
+
+## Known Issues
+- coordinate to pixel conversion too imprecise 
+- calculation of distance between uas and groundstation not yet implemented
